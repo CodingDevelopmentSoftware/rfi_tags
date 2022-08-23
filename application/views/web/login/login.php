@@ -50,7 +50,7 @@
                         <h3 class="panel-title text-center">SIGN IN</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="post" action="<?= base_url('login/check') ?>" autocomplete="off">
+                        <form role="form" method="post" action="<?= base_url('check') ?>" autocomplete="off">
                             <fieldset>
                                 <div class="form-group">
                                     <label for="phone_number">Phone Number</label>

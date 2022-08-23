@@ -14,7 +14,7 @@ function getUserType()
 function postAllowed()
 {
     $CI = &get_instance();
-    if (count($CI->input->post()) <= 0) {
+    if (count($CI->input->post()) <= 0 && $_SERVER['REQUEST_METHOD'] != 'POST' ) {
         return false;
     }
     return true;
