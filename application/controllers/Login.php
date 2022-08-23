@@ -8,7 +8,12 @@ class Login extends MY_Controller
     }
     public function index()
     {
-        $data['title'] = 'Login';
-        $this->load->view('web/login/login',$data);
+        $this->data['title'] = 'Login';
+        $this->load->view('web/login/login',$this->data);
     }
+    public function check(){
+        
+    }
+
+
 }
