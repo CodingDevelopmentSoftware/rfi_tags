@@ -9,7 +9,7 @@
                          <script type="text/javascript">
                                  setTimeout(function() {
                                          $('.msg').fadeOut();
-                                 }, 15000);
+                                 }, 3000);
                          </script>
                  <?php endif; ?>
          </div>

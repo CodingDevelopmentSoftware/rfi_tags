@@ -1,13 +1,6 @@
 <?php
 class Vehicle_admin extends CI_Model 
 {
-	public function get_time()
-	{
-		$now = new DateTime();
-		$now->setTimezone(new DateTimezone('Asia/Calcutta'));
-		$get_time= $now->format('Y-m-d H:i:s');
-		return $get_time;
-	}
 	public function login_model()
 	{
 		$code_email_id=strtolower(stripcslashes(htmlspecialchars(trim($this->input->post('email_id')))));

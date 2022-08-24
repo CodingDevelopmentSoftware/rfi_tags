@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class Login extends MY_Controller
+class LoginController extends MY_Controller
 {
     public function __construct()
     {
@@ -28,11 +28,22 @@ class Login extends MY_Controller
             'phone_number' => postDataFilterhtml($this->input->post('phone_number')),
             'password' => md5(postDataFilterhtml($this->input->post('password'))),
         ];
+        
+        $response =  $this->LoginModel->checkLogin($databaseData);
 
-        echo "<pre>";
-        print_r($databaseData);
-        exit;
-
-
+        if($response['status'] == 1){
+            $color = '';
+            $message = '';
+            $redirect = 'Dashoard';
+        } else if ($response['status'] == 2){
+            $redirect = 'login';
+            $message = $response['message']; 
+            $color = 'warning';
+        } else if ($response['status'] == 0){
+            $redirect = 'login';
+            $message = $response['message']; 
+            $color = 'danger';
+        }
+        $this->redirectWithMessage($color,$message,$redirect);
     }
 }
