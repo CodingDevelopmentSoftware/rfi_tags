@@ -16,7 +16,6 @@ class MY_Controller extends CI_Controller
 		string $message = '',
 		string $redirect = ''
 	) : void {
-
 		$this->session->set_flashdata('color', $color);
 		$this->session->set_flashdata('message', $message);
 		redirect($redirect);

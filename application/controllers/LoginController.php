@@ -32,9 +32,9 @@ class LoginController extends MY_Controller
         $response =  $this->LoginModel->checkLogin($databaseData);
 
         if($response['status'] == 1){
-            $color = '';
-            $message = '';
-            $redirect = 'Dashoard';
+            $color = 'success';
+            $message = $response['message'];
+            $redirect = 'dashboard';
         } else if ($response['status'] == 2){
             $redirect = 'login';
             $message = $response['message']; 

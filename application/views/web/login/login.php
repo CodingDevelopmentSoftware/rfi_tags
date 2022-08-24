@@ -45,11 +45,11 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
-                    <?php $this->load->view('web/includes/message'); ?>
                     <div class="panel-heading">
                         <h3 class="panel-title text-center">SIGN IN</h3>
                     </div>
                     <div class="panel-body">
+                    <?php $this->load->view('web/includes/message'); ?>
                         <form role="form" method="post" action="<?= base_url('check') ?>" autocomplete="off">
                             <fieldset>
                                 <div class="form-group">
