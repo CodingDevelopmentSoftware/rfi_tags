@@ -79,7 +79,7 @@
                         <li><a href="<?= base_url('change_password') ?>"><i class="fa fa-gear fa-fw"></i>Change Password</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="<?= base_url('Vehicle_controller/logout') ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?= base_url('logout') ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

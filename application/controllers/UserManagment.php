@@ -6,6 +6,7 @@
     public function __construct()
     {
         parent::__construct();
+        $this->checkUserSessionExist();
     }
 
     public function index()

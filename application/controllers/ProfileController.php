@@ -7,6 +7,7 @@ class ProfileController extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->checkUserSessionExist();
     }
     public function index()
     {
@@ -55,7 +56,7 @@ class ProfileController extends MY_Controller
             $color = 'danger';
             $message = 'Database Problem';
         }
-        $this->redirectWithMessage($color, $message, 'my_profile');
+        $this->redirectWithMessage($color, $message, 'update_profile');
     }
 
     public function changePassword()
@@ -110,5 +111,12 @@ class ProfileController extends MY_Controller
         }
 
         $this->redirectWithMessage($color, $message, 'change_password');
+    }
+    public function logout()
+    {
+        $color = 'success';
+        $message = 'Logout Succesfully';
+        $this->session->sess_destroy();
+        $this->redirectWithMessage($color, $message, 'login');
     }
 }
