@@ -61,11 +61,12 @@ class MY_Model extends CI_Model
     }
 
     public function deleteData(
+        string $table = '',
         array $where = []
     ): int {
         $this->db->trans_begin();
         $this->db->where($where);
-        $this->db->delete($this->table);
+        $this->db->delete($table);
         if ($this->db->affected_rows()) {
             $this->db->trans_commit();
             return  1;
@@ -73,5 +74,12 @@ class MY_Model extends CI_Model
             $this->db->trans_rollback();
             return 0;
         }
+    }
+    
+    public function getCount(
+        string $table = '',
+        array $where = []
+    ) : int {
+        return $this->db->where($where)->get($table)->num_rows();
     }
 }

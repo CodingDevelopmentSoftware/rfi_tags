@@ -57,4 +57,58 @@ class ProfileController extends MY_Controller
         }
         $this->redirectWithMessage($color, $message, 'my_profile');
     }
+
+    public function changePassword()
+    {
+        $this->data['title'] = 'Change Password';
+        $this->load->view('web/includes/header', $this->data);
+        $this->load->view('web/profile/change_password');
+        $this->load->view('web/includes/footer');
+    }
+    public function savePassword()
+    {
+        if (!postAllowed()) {
+            redirect('change_password');
+        }
+
+        $userId = $this->getLoggedInUser()->user_id;
+
+        $whereData = [
+            'user_id' => $userId,
+            'password' => md5(postDataFilterhtml($this->input->post('old_password')))
+        ];
+
+        $response = $this->ProfileModel->getCount($this->tableName, $whereData);
+        if ($response == 1) {
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('new_password', 'Password', 'required');
+            $this->form_validation->set_rules('con_password', 'Confirm Password', 'required|matches[new_password]');
+            if ($this->form_validation->run() == FALSE) {
+                $this->changePassword();
+                return false;
+            }
+
+            $whereData = [
+                'user_id' => $userId,
+            ];
+
+            $updateData = [
+                'password' => md5(postDataFilterhtml($this->input->post('new_password')))
+            ];
+
+            $response = $this->ProfileModel->updateData($this->tableName, $whereData, $updateData);
+            if ($response == 1) {
+                $color = 'success';
+                $message = 'Password Updated Successfully';
+            } else if ($response == 0) {
+                $color = 'danger';
+                $message = 'Database Problem';
+            }
+        } else {
+            $color = 'danger';
+            $message = 'Old Password do not matched';
+        }
+
+        $this->redirectWithMessage($color, $message, 'change_password');
+    }
 }
