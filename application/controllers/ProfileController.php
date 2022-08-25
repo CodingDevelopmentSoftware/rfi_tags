@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class DashboardController extends MY_Controller
+class ProfileController extends MY_Controller
 {
     public function __construct()
     {
@@ -8,9 +8,10 @@ class DashboardController extends MY_Controller
     }
     public function index()
     {
-        $this->data['title']='DashBoard';
+        $this->data['title'] = 'My Profile';
+        $this->data['page_data'] = $this->getLoggedInUser();
         $this->load->view('web/includes/header',$this->data);
-        $this->load->view('web/dashboard/dashboard');
+        $this->load->view('web/profile/my_profile');
         $this->load->view('web/includes/footer');
     }
 }

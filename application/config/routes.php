@@ -60,3 +60,6 @@ $route['check']['post'] = 'LoginController/check';
 
 //DashboardController
 $route['dashboard']['get'] = 'DashboardController/index';
+
+//ProfileController
+$route['my_profile']['get'] = 'ProfileController/index';

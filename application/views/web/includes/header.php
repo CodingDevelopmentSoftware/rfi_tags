@@ -70,7 +70,7 @@
                             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="<?= base_url()?>Vehicle_controller/my_profile"><i class="fa fa-user fa-fw"></i>My Profile</a>
+                            <li><a href="<?= base_url('my_profile'); ?>"><i class="fa fa-user fa-fw"></i>My Profile</a>
                             </li>
                             <li><a href="<?= base_url()?>Vehicle_controller/change_password"><i class="fa fa-gear fa-fw"></i>Change Password</a>
                             </li>
@@ -86,15 +86,15 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li class="sidebar-profile text-center">
-                                <!-- <span class="sidebar-profile-picture">
+                                <span class="sidebar-profile-picture">
                                     
-                                    <img  height="75" style="margin-top: -15%; border-radius: 0px;" src="<?= base_url()?>public/img/profile.jpg" alt="Profile Picture"/>
-                                </span> -->
+                                    <img  height="75" style="margin-top: -15%; border-radius: 0px;" src="<?= base_url('public/img/profile.jpeg')?>" alt="Profile Picture"/>
+                                </span>
                                 <h4 class="sidebar-profile-name">WAVELINX TAG MANAGEMENT SYSTEM
                                 </h4>
                             </li>                            
                             <li style="margin-top: -10%;">
-                                <a href="<?= base_url()?>Vehicle_controller/dashboard">
+                                <a href="<?= base_url('dashboard'); ?>">
                                     <span class="sidebar-item-icon fa-stack">
                                         <i class="fa fa-square fa-stack-2x text-primary"></i>
                                         <i class="fa fa-dashboard fa-stack-1x fa-inverse"></i>
@@ -102,7 +102,7 @@
                                     <span class="sidebar-item-title">Dashboard</span>
                                 </a>
                             </li>
-                           <?php if($this->session->userdata('type')=='s'){?>
+                           <?php if($this->session->userdata('user_type')=='s'){?>
                              <li>
                                 <a href="#">
                                     <span class="sidebar-item-icon fa-stack ">
@@ -114,7 +114,7 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?= base_url('UserManagment/')?>" title="Add Uesrs">Add User</a>
+                                        <a href="<?= base_url('adduser')?>" title="Add Uesrs">Add User</a>
                                     </li>
                                 </ul>
                                 <ul class="nav nav-second-level">

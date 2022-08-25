@@ -19,7 +19,14 @@ class MY_Model extends CI_Model
         return $this->db->get($tableName)->result();
     }
 
-    function insertData(
+    public function getSingleRowWithWhere(
+        string $select = '*',
+        string $tableName = '',
+        array $whereData = []): object {
+            return $this->db->select($select)->where($whereData)->get($tableName)->row();
+    }
+
+    public function insertData(
         string $table = '',
         array $data = []
     ): int {
@@ -35,7 +42,7 @@ class MY_Model extends CI_Model
         }
     }
 
-    function updateData(
+    public function updateData(
         array $where = [],
         array $data = []
     ): int {
@@ -51,7 +58,7 @@ class MY_Model extends CI_Model
         }
     }
 
-    function deleteData(
+    public function deleteData(
         array $where = []
     ): int {
         $this->db->trans_begin();

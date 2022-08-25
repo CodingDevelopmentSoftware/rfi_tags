@@ -7,12 +7,6 @@ function checkUserSession()
     return $CI->session->userdata();
 }
 
-function getUserType()
-{
-    $userType = checkUserSession();
-    return $userType['type'];
-}
-
 function postAllowed()
 {
     global $CI;

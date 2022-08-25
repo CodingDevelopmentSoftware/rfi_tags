@@ -28,7 +28,7 @@
         <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/jquery.dataTables.min.js"></script>
         <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/dataTables.buttons.min.js"></script>
         <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/jszip.min.js"></script>
-        <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/pdfmake.min.js"></script>
+        <!-- <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/pdfmake.min.js"></script> -->
         <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/vfs_fonts.js"></script>
         <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/buttons.html5.min.js"></script>
         <script src="<?= base_url()?>public/js/plugins/dataTables/theme_datatables/my_tables.js"></script>
