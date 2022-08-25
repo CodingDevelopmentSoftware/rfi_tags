@@ -10,8 +10,16 @@ class ProfileController extends MY_Controller
     {
         $this->data['title'] = 'My Profile';
         $this->data['page_data'] = $this->getLoggedInUser();
-        $this->load->view('web/includes/header',$this->data);
+        $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/profile/my_profile');
+        $this->load->view('web/includes/footer');
+    }
+    public function updateProfile()
+    {
+        $this->data['title'] = 'Update Profile';
+        $this->data['page_data'] = $this->getLoggedInUser();
+        $this->load->view('web/includes/header', $this->data);
+        $this->load->view('web/profile/update_profile');
         $this->load->view('web/includes/footer');
     }
 }

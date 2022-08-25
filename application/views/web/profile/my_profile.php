@@ -11,8 +11,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="panel-body">
-                            <p> <a href="<?= base_url('Vehicle_controller/update_profile') ?>" class="btn btn-success">Edit Profile</a></td>
-                                <td><a href="<?= base_url('Vehicle_controller/change_password'); ?>" class="btn btn-info">Change Password</a>
+                            <p> <a href="<?= base_url('update_profile') ?>" class="btn btn-success">Update Profile</a></td>
+                                <td><a href="<?= base_url('change_password'); ?>" class="btn btn-info">Change Password</a>
                             </p>
                             <div class="table-responsive">
                                 <table class="table table-hover">
