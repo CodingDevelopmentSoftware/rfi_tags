@@ -22,10 +22,6 @@
                                     <label>Last Name </label>
                                     <input type="text" name="last_name" class="form-control" placeholder="Please Enter Last Name" required maxlength="40" value="<?= $page_data->last_name ?>">
                                 </div>
-                                <div class="form-group">
-                                    <label>Phone Number *</label>
-                                    <input type="number" name="phone_no" class="form-control" placeholder="Phone Number *" required maxlength="10" min="1" value="<?= $page_data->phone_number ?>">
-                                </div>
                                 <button type="submit" class="btn btn-success" name="update">Update</button>
                                 <a href="<?= base_url('my_profile') ?>" onclick="return confirm('Are you sure you want to cancel ?')" class="btn btn-info">Cancel</a>
                             </form>

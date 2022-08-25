@@ -9,6 +9,7 @@
                     </h4>
                 </div>
                 <div class="panel-body">
+                <?php $this->load->view('web/includes/message'); ?>
                     <div class="row">
                         <div class="panel-body">
                             <p> <a href="<?= base_url('update_profile') ?>" class="btn btn-success">Update Profile</a></td>

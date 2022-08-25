@@ -22,8 +22,9 @@ class MY_Model extends CI_Model
     public function getSingleRowWithWhere(
         string $select = '*',
         string $tableName = '',
-        array $whereData = []): object {
-            return $this->db->select($select)->where($whereData)->get($tableName)->row();
+        array $whereData = []
+    ): object {
+        return $this->db->select($select)->where($whereData)->get($tableName)->row();
     }
 
     public function insertData(
@@ -43,12 +44,13 @@ class MY_Model extends CI_Model
     }
 
     public function updateData(
+        string $table = '',
         array $where = [],
         array $data = []
     ): int {
         $this->db->trans_begin();
         $this->db->where($where);
-        $this->db->update($this->table, $data);
+        $this->db->update($table, $data);
         if ($this->db->affected_rows()) {
             $this->db->trans_commit();
             return  1;

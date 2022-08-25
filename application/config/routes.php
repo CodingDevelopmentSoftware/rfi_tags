@@ -64,3 +64,4 @@ $route['dashboard']['get'] = 'DashboardController/index';
 //ProfileController
 $route['my_profile']['get'] = 'ProfileController/index';
 $route['update_profile']['get'] = 'ProfileController/updateProfile';
+$route['saveprofile']['post'] = 'ProfileController/saveProfile';
