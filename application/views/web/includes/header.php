@@ -98,7 +98,7 @@
                             </h4>
                         </li>
                         <li style="margin-top: -10%;">
-                            <a href="<?= base_url('dashboard'); ?>">
+                            <a href="<?= base_url('dashboard'); ?>" title="Dahsboard">
                                 <span class="sidebar-item-icon fa-stack">
                                     <i class="fa fa-square fa-stack-2x text-primary"></i>
                                     <i class="fa fa-dashboard fa-stack-1x fa-inverse"></i>
@@ -106,7 +106,7 @@
                                 <span class="sidebar-item-title">Dashboard</span>
                             </a>
                         </li>
-                        <?php if ($this->session->userdata('user_type') == 's') { ?>
+                        <?php if ($user_type == 's') { ?>
                             <li>
                                 <a href="#">
                                     <span class="sidebar-item-icon fa-stack ">
@@ -118,12 +118,12 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?= base_url('adduser') ?>" title="Add Uesrs">Add User</a>
+                                        <a href="<?= base_url('add_user') ?>" title="Add Uesrs">Add User</a>
                                     </li>
                                 </ul>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?= base_url() ?>Vehicle_controller/view_management_user">View Users</a>
+                                        <a href="<?= base_url('view_users') ?>" title="View Users">View Users</a>
                                     </li>
                                 </ul>
                             </li>

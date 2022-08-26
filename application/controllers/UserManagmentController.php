@@ -1,7 +1,7 @@
     <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class UserManagment extends MY_Controller {
+    class UserManagmentController extends MY_Controller {
 
     public function __construct()
     {
@@ -11,39 +11,68 @@
 
     public function index()
     {
-        $data['title']='Add User';
-        $this->load->view('web/includes/header',$data);
-        $this->load->view('web/usermanagement/adduser');
+        $this->data['title']='Add User';
+        $this->load->view('web/includes/header',$this->data);
+        $this->load->view('web/usermanagement/add_user');
         $this->load->view('web/includes/footer');
     }
 
-    public function save()
+    public function saveUser()
     {
         if(!postAllowed()) {
             redirect('UserManagment');
         }
-        $this->form_validation->set_rules('first_name', 'First Name', 'required|min_length[10]');
-        $this->form_validation->set_rules('last_name', 'Last Name', 'required|min_length[10]');
-        $this->form_validation->set_rules('phone_no', 'Phone Number', 'required|exact_length[10]|numeric');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('first_name', 'First Name', 'required');
+        $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+        $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|exact_length[10]|numeric');
         if ($this->form_validation->run() == FALSE) {
             $this->index();
             return;
         }
 
-        $data = [
-            'first_name' => postDataFilterhtml($this->input->post('first_name')),
-            'last_name' => postDataFilterhtml($this->input->post('last_name')),
-            'phone_no' => postDataFilterhtml($this->input->post('phone_no')),
+        $phone_number = postDataFilterhtml($this->input->post('phone_number'));
+
+        $whereData = [
+            'phone_number' => $phone_number
         ];
+
+        $response = $this->UserManagmentModel->getCount('user_management',$whereData);
         
+        if($response == 0) {
+            $insertData = [
+                'first_name' => postDataFilterhtml($this->input->post('first_name')),
+                'last_name' => postDataFilterhtml($this->input->post('last_name')),
+                'phone_number' => $phone_number,
+                'user_type'=> postDataFilterhtml($this->input->post('user_type')),
+                'password' => md5('123456'),
+                'status' => 1,
+                'created_by' => $this->getLoggedInUser()->user_id,
+                'created_dt' => getCurrentTime(),
+            ];
+            $response = $this->UserManagmentModel->insertData('user_management', $insertData);
 
-
+            if($response > 0) {
+                $color = 'success';
+                $message = "User with Phone Number $phone_number Created Successfully";
+            } else {
+                $color = 'danger';
+                $message = "Database Problem";
+            }
+        } else {
+            $color = 'warning';
+            $message = "User with Phone Number $phone_number already Created";
+        }
+        $this->redirectWithMessage($color,$message,'add_user');
     }
 
-    public function add()
+    public function viewUsers()
     {
-        ifPermissions('users_add');
-        $this->load->view('users/add', $this->page_data);
+        $this->data['title']='View Users';
+        $this->data['page_data'] = $this->UserManagmentModel->getByTableName('user_management');
+        $this->load->view('web/includes/header',$this->data);
+        $this->load->view('web/usermanagement/view_users');
+        $this->load->view('web/includes/footer');
     }
 
 

@@ -10,6 +10,7 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         $this->data['company'] = 'WAVELINX | RFID TAGES SYSTEM';
+        $this->data['user_type'] = $this->getLoggedInUser()->user_type;
     }
     public function redirectWithMessage(
         string $color = '',

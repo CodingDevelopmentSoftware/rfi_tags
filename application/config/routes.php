@@ -68,3 +68,9 @@ $route['saveprofile']['post'] = 'ProfileController/saveProfile';
 $route['change_password']['get'] = 'ProfileController/changePassword';
 $route['save_password']['post'] = 'ProfileController/savePassword';
 $route['logout']['get'] = 'ProfileController/logout';
+
+
+//UserManagementController
+$route['add_user']['get'] = 'UserManagmentController/index';
+$route['save_user']['post'] = 'UserManagmentController/saveUser';
+$route['view_users']['get'] = 'UserManagmentController/viewUsers';
