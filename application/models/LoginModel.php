@@ -33,7 +33,7 @@ class LoginModel extends MY_Model
                 ];
                 $this->insertData('loginactivity', $insertData);
                 
-                return ['status' => 1 , 'message' => 'Login Successful'];
+                return ['status' => 1 , 'message' => "Welcome $userData->first_name $userData->last_name to WAVELINX TAG MANAGEMENT SYSTEM"];
             } else {
                 return ['status' => 2 , 'message' => 'User not active any more '];
             }

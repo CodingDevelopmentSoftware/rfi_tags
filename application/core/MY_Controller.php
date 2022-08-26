@@ -10,7 +10,7 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         $this->data['company'] = 'WAVELINX | RFID TAGES SYSTEM';
-        $this->data['user_type'] = $this->getLoggedInUser()->user_type;
+        $this->data['user_type'] = isset($this->getLoggedInUser()->user_type) ? $this->getLoggedInUser()->user_type : null;
     }
     public function redirectWithMessage(
         string $color = '',
@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller
         $this->session->set_flashdata('message', $message);
         redirect($redirect);
     }
-    public function getLoggedInUser(): object
+    public function getLoggedInUser(): ?object
     {
         $userId = $this->session->userdata('id');
         return $this->ProfileModel->getSingleRowWithWhere(

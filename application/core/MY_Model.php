@@ -23,7 +23,7 @@ class MY_Model extends CI_Model
         string $select = '*',
         string $tableName = '',
         array $whereData = []
-    ): object {
+    ): ?object {
         return $this->db->select($select)->where($whereData)->get($tableName)->row();
     }
 
