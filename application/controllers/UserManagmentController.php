@@ -111,130 +111,88 @@
                     $message = "Password Reset Successfully";
                 } else {
                     $color = 'danger';
-                    $message = "Database Problem";  
+                    $message = "Database Problem";
                 }
             }
             $this->redirectWithMessage($color, $message, 'view_users');
         }
 
-        public function view($id)
+        public function changeStatus(string $id = '', string $status = '')
         {
+            $id = (int)base64_decode($id);
+            $status = (int)base64_decode($status);
+            $response = $this->UserManagmentModel->getCount('user_management', ['user_id' => $id]);
 
-            ifPermissions('users_view');
-
-            $this->page_data['User'] = $this->users_model->getById($id);
-            $this->page_data['User']->role = $this->roles_model->getByWhere([
-                'id' => $this->page_data['User']->role
-            ])[0];
-            $this->page_data['User']->activity = $this->activity_model->getByWhere([
-                'user' => $id
-            ], ['order' => ['id', 'desc']]);
-            $this->load->view('users/view', $this->page_data);
-        }
-
-        public function edit($id)
-        {
-
-            ifPermissions('users_edit');
-
-            $this->page_data['User'] = $this->users_model->getById($id);
-            $this->load->view('users/edit', $this->page_data);
-        }
-
-
-        public function update($id)
-        {
-
-            ifPermissions('users_edit');
-
-            postAllowed();
-
-            $data = [
-                'role' => post('role'),
-                'name' => post('name'),
-                'username' => post('username'),
-                'email' => post('email'),
-                'phone' => post('phone'),
-                'address' => post('address'),
-            ];
-
-            $password = post('password');
-
-            if (logged('id') != $id)
-                $data['status'] = post('status') == 1;
-
-            if (!empty($password))
-                $data['password'] = hash("sha256", $password);
-
-            $id = $this->users_model->update($id, $data);
-
-            if (!empty($_FILES['image']['name'])) {
-
-                $path = $_FILES['image']['name'];
-                $ext = pathinfo($path, PATHINFO_EXTENSION);
-                $this->uploadlib->initialize([
-                    'file_name' => $id . '.' . $ext
-                ]);
-                $image = $this->uploadlib->uploadImage('image', '/users');
-
-                if ($image['status']) {
-                    $this->users_model->update($id, ['img_type' => $ext]);
+            if ($response != 1) {
+                $color = 'danger';
+                $message = "User does not exist";
+            } else {
+                $response = $this->UserManagmentModel->updateData(
+                    'user_management',
+                    ['user_id' => $id],
+                    ['status' =>  !$status]     // making active or inactive by adding not condtion
+                );
+                if ($response == 1) {
+                    $color = 'success';
+                    $message = "User Status Changed Successfully";
+                } else {
+                    $color = 'danger';
+                    $message = "Database Problem";
                 }
             }
-
-            $this->activity_model->add("User #$id Updated by User:" . logged('name'));
-
-            $this->session->set_flashdata('alert-type', 'success');
-            $this->session->set_flashdata('alert', 'Client Profile has been Updated Successfully');
-
-            redirect('users');
+            $this->redirectWithMessage($color, $message, 'view_users');
         }
 
-        public function check()
+        public function editUserProfile($id)
         {
-            $email = !empty(get('email')) ? get('email') : false;
-            $username = !empty(get('username')) ? get('username') : false;
-            $notId = !empty($this->input->get('notId')) ? $this->input->get('notId') : 0;
+            $id = (int)base64_decode($id);
+            $response = $this->UserManagmentModel->getCount('user_management', ['user_id' => $id]);
 
-            if ($email)
-                $exists = count($this->users_model->getByWhere([
-                    'email' => $email,
-                    'id !=' => $notId,
-                ])) > 0 ? true : false;
-
-            if ($username)
-                $exists = count($this->users_model->getByWhere([
-                    'username' => $username,
-                    'id !=' => $notId,
-                ])) > 0 ? true : false;
-
-            echo $exists ? 'false' : 'true';
-        }
-
-        public function delete($id)
-        {
-
-            ifPermissions('users_delete');
-
-            if ($id !== 1 && $id != logged($id)) {
-            } else {
-                redirect('/', 'refresh');
-                return;
+            if ($response != 1) {
+                $color = 'danger';
+                $message = "User does not exist";
+                $this->redirectWithMessage($color, $message, 'view_users');
             }
 
-            $id = $this->users_model->delete($id);
-
-            $this->activity_model->add("User #$id Deleted by User:" . logged('name'));
-
-            $this->session->set_flashdata('alert-type', 'success');
-            $this->session->set_flashdata('alert', 'User has been Deleted Successfully');
-
-            redirect('users');
+            $this->data['title'] = 'Edit User';
+            $this->data['page_data'] = $this->UserManagmentModel->getSingleRowWithWhere('*', 'user_management', ['user_id' => $id]);
+            $this->load->view('web/includes/header', $this->data);
+            $this->load->view('web/usermanagement/edit_user_profile');
+            $this->load->view('web/includes/footer');
         }
-
-        public function change_status($id)
+        public function saveUpdateUser()
         {
-            $this->users_model->update($id, ['status' => get('status') == 'true' ? 1 : 0]);
-            echo 'done';
+            if (!postAllowed()) {
+                redirect('UserManagment');
+            }
+            $id = $this->input->post('user_id');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('first_name', 'First Name', 'required');
+            $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+            $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|exact_length[10]|numeric');
+            if ($this->form_validation->run() == FALSE) {
+                $this->index();
+                return redirect("edit_user_profile/" . base64_encode($id));
+            }
+
+            $updateData = [
+                'first_name' => postDataFilterhtml($this->input->post('first_name')),
+                'last_name' => postDataFilterhtml($this->input->post('last_name')),
+                'phone_number' => postDataFilterhtml($this->input->post('phone_number')),
+                'user_type' => postDataFilterhtml($this->input->post('user_type')),
+                'modified_by' => $this->getLoggedInUser()->user_id,
+                'modified_dt' => getCurrentTime(),
+            ];
+            $response = $this->UserManagmentModel->updateData('user_management', ['user_id' => $id], $updateData);
+
+            if ($response > 0) {
+                $color = 'success';
+                $message = "User Profile updated Successfully";
+            } else {
+                $color = 'danger';
+                $message = "Database Problem";
+            }
+            $this->redirectWithMessage($color, $message, 'view_users');
         }
     }
+    ?>

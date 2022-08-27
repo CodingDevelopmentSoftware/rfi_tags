@@ -76,4 +76,7 @@ $route['save_user']['post'] = 'UserManagmentController/saveUser';
 $route['view_users']['get'] = 'UserManagmentController/viewUsers';
 $route['view_user_profile/(:any)']['get'] = 'UserManagmentController/viewUserProfile/$1';
 $route['reset_password/(:any)']['get'] = 'UserManagmentController/resetPassword/$1';
+$route['change_status/(:any)/(:any)']['get'] = 'UserManagmentController/changeStatus/$1/$2';
+$route['edit_user_profile/(:any)']['get'] = 'UserManagmentController/editUserProfile/$1';
+$route['save_update_user']['post'] = 'UserManagmentController/saveUpdateUser';
 

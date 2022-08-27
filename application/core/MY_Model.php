@@ -75,11 +75,11 @@ class MY_Model extends CI_Model
             return 0;
         }
     }
-    
+
     public function getCount(
         string $table = '',
         array $where = []
-    ) : int {
+    ): int {
         return $this->db->where($where)->get($table)->num_rows();
     }
 }
