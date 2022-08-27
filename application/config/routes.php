@@ -74,3 +74,6 @@ $route['logout']['get'] = 'ProfileController/logout';
 $route['add_user']['get'] = 'UserManagmentController/index';
 $route['save_user']['post'] = 'UserManagmentController/saveUser';
 $route['view_users']['get'] = 'UserManagmentController/viewUsers';
+$route['view_user_profile/(:any)']['get'] = 'UserManagmentController/viewUserProfile/$1';
+$route['reset_password/(:any)']['get'] = 'UserManagmentController/resetPassword/$1';
+

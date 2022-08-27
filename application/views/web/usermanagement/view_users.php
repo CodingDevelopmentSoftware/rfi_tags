@@ -33,7 +33,7 @@
                                             <td><?= ucfirst($user->first_name); ?></td>
                                             <td><?= ucfirst($user->last_name) ?></td>
                                             <td><?= $user->phone_number ?></td>
-                                            <td><?= $user->user_type == 'a' ? 'Admin' : 'User'; ?></td>
+                                            <td><?= $user->user_type == 'a' ? 'Admin' : 'Employee'; ?></td>
                                             <td><?= $user->status == 1 ? 'Active' : 'Inactive' ; ?></td>
                                             <td>
                                                 <a href="<?= base_url("view_user_profile/") . base64_encode($user->user_id); ?>" onclick="return confirm('Are you sure you want to View the profile of <?= $user->phone_number; ?> ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>

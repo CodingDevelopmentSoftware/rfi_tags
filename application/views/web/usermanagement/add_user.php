@@ -30,7 +30,7 @@
                                     <select class="form-control" name="user_type" required>
                                         <option value="">User Type </option>
                                         <option value="a">Admin</option>
-                                        <option value="u">User</option>
+                                        <option value="e">Employee</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-success" name="add">Add</button>

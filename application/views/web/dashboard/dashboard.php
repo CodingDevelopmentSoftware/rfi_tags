@@ -2,6 +2,11 @@
      <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('dashboard')?>">Home</a></li>
+                <li>Dashboard</li>
+                <!-- <li class="active">Inbox</li> -->
+            </ol>
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <h4 class="text-uppercase margin-none"><i class="fa fa-dashboard"></i> Dashboard</h4>

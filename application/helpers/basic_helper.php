@@ -32,6 +32,11 @@ function getCurrentTime()
     return $now->format('Y-m-d H:i:s');
 }
 
+function getFormatedDate(string $date = ''): string
+{
+    return date('Y-m-d H:i:s',strtotime($date));
+}
+
 function getCurrentAgent()
 {
     global $CI;
