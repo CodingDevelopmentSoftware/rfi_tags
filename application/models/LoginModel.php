@@ -32,13 +32,14 @@ class LoginModel extends MY_Model
                     'platform' => $paltform
                 ];
                 $this->insertData('loginactivity', $insertData);
-                
-                return ['status' => 1 , 'message' => "Welcome $userData->first_name $userData->last_name to WAVELINX TAG MANAGEMENT SYSTEM"];
+                $this->updateData('user_management', ['user_id' => $userData->user_id], ['last_login' => getCurrentTime()]);
+
+                return ['status' => 1, 'message' => "Welcome $userData->first_name $userData->last_name to WAVELINX TAG MANAGEMENT SYSTEM"];
             } else {
-                return ['status' => 2 , 'message' => 'User not active any more '];
+                return ['status' => 2, 'message' => 'User not active any more '];
             }
         } else {
-            return ['status' => 0 , 'message' => 'Invalid Username/Password'];
+            return ['status' => 0, 'message' => 'Invalid Username/Password'];
         }
     }
 }

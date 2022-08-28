@@ -194,5 +194,22 @@
             }
             $this->redirectWithMessage($color, $message, 'view_users');
         }
+        public function loginActivities($id)
+        {
+            $id = (int)base64_decode($id);
+            $response = $this->UserManagmentModel->getCount('user_management', ['user_id' => $id]);
+
+            if ($response != 1) {
+                $color = 'danger';
+                $message = "User does not exist";
+                $this->redirectWithMessage($color, $message, 'view_users');
+            }
+            $fullName = $this->UserManagmentModel->getSingleRowWithWhere('*', 'user_management', ['user_id' => $id]);
+            $this->data['title'] = 'Activities Of ' . $fullName->first_name . ' ' . $fullName->last_name;
+            $this->data['page_data'] = $this->UserManagmentModel->getUserActivitiesWithWehere($id);
+            $this->load->view('web/includes/header', $this->data);
+            $this->load->view('web/usermanagement/login_activities');
+            $this->load->view('web/includes/footer');
+        }
     }
     ?>

@@ -79,4 +79,6 @@ $route['reset_password/(:any)']['get'] = 'UserManagmentController/resetPassword/
 $route['change_status/(:any)/(:any)']['get'] = 'UserManagmentController/changeStatus/$1/$2';
 $route['edit_user_profile/(:any)']['get'] = 'UserManagmentController/editUserProfile/$1';
 $route['save_update_user']['post'] = 'UserManagmentController/saveUpdateUser';
+$route['login_activities/(:any)']['get'] = 'UserManagmentController/loginActivities/$1';
+
 

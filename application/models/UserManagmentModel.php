@@ -22,4 +22,18 @@ class UserManagmentModel extends MY_Model
             ->get()
             ->row();
     }
+    public function getUserActivitiesWithWehere(int $id = 0) : array
+    {
+        $check = $this->db
+            ->where(['user_id'=> $id])
+            ->order_by('last_login', 'DESC')
+            ->get('loginactivity')
+            ->result();
+        if(!empty($check)){
+            return $check;
+        } else {
+            return [];
+        }    
+            
+    }
 }
