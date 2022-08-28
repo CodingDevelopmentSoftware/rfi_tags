@@ -31,6 +31,10 @@
                                             <td><b><?= $page_data->phone_number; ?></b></td>
                                         </tr>
                                         <tr>
+                                            <td>Last Login </td>
+                                            <td><b><?= $page_data->last_login; ?></b></td>
+                                        </tr>
+                                        <tr>
                                             <td>Created Date</td>
                                             <td><b><?= $page_data->created_dt; ?></b></td>
                                         </tr>

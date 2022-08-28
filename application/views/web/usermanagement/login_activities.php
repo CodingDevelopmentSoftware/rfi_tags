@@ -16,38 +16,23 @@
                             <thead>
                                 <tr>
                                     <th>Serial No.</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Phone Number</th>
-                                    <th>Type</th>
-                                    <th>Status</th>
-                                    <th>Last Login</th>
-                                    <th>Action</th>
+                                    <th>Login Date Time</th>
+                                    <th>Ip Address</th>
+                                    <th>Login Agent</th>
+                                    <th>Login Platform</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $c = 0;
-                                foreach ($page_data as $user) {
-                                    if ($this->session->userdata('user_id') != $user->user_id && $user->user_id != 1) { ?>
+                                foreach ($page_data as $user):?>
                                         <tr>
                                             <td><?= ++$c; ?></td>
-                                            <td><?= ucfirst($user->first_name); ?></td>
-                                            <td><?= ucfirst($user->last_name) ?></td>
-                                            <td><?= $user->phone_number ?></td>
-                                            <td><?= $user->user_type == 'a' ? 'Admin' : 'Employee'; ?></td>
-                                            <td><?= $user->status == 1 ? 'Active' : 'Inactive'; ?></td>
-                                            <td><?= $user->last_login ? $user->last_login : 'N/A'; ?></td>
-                                            <td>
-                                                <a href="<?= base_url("view_user_profile/") . base64_encode($user->user_id); ?>" onclick="return confirm('Are you sure you want to View the profile of <?= $user->phone_number; ?> ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
-
-                                                <a href="<?= base_url("edit_user_profile/") . base64_encode($user->user_id); ?>" onclick="return confirm('Are you sure you want to Edit the profile of <?= $user->phone_number; ?> ?')" class="btn btn-success btn-xs" title="Edit Profile">Edit</a>
-                                                <a href="<?= base_url("reset_password/") . base64_encode($user->user_id); ?>" onclick="return confirm('Are you sure you want to Reset the password of <?= $user->phone_number; ?> ?')" class="btn btn-info btn-xs" title="Reset Password">Reset Password</a>
-                                                <a href="<?= base_url("change_status/") . base64_encode($user->user_id) . '/' . base64_encode($user->status); ?>" onclick="return confirm('Are you sure you want to change the Status of <?= $user->phone_number; ?> ?')" class="btn btn-<?= $user->status == 1 ? 'danger' : 'warning'; ?> btn-xs" title="Change Status"><?= $user->status == 0 ? 'Active' : 'Inactive'; ?></a>
-                                                <a href="<?= base_url("login_activities/") . base64_encode($user->user_id) ?>" onclick="return confirm('Are you sure you want to View Login Activities <?= $user->phone_number; ?> ?')" class="btn btn-default btn-xs" title="Login Activities">Activities</a>
-                                            </td>
+                                            <td><?= $user->last_login ?></td>
+                                            <td><?= $user->ip_address ?></td>
+                                            <td><?= $user->login_agent ?></td>
+                                            <td><?= $user->platform ?></td>
                                         </tr>
-                                <?php }
-                                } ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

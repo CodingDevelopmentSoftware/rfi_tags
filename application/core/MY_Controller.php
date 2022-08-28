@@ -25,7 +25,7 @@ class MY_Controller extends CI_Controller
     {
         $userId = $this->session->userdata('id');
         return $this->ProfileModel->getSingleRowWithWhere(
-            'user_id,first_name,last_name,phone_number,user_type,status,created_dt',
+            'user_id,first_name,last_name,phone_number,user_type,status,created_dt,last_login',
             'user_management',
             ['user_id' => $userId]
         );
