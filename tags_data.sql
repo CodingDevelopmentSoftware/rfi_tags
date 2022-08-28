@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2022 at 09:03 PM
+-- Generation Time: Aug 28, 2022 at 02:11 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -36,13 +36,6 @@ CREATE TABLE `loginactivity` (
   `platform` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `loginactivity`
---
-
-INSERT INTO `loginactivity` (`id`, `user_id`, `last_login`, `ip_address`, `login_agent`, `platform`) VALUES
-(1, 7, '2022-08-25 00:33:07', '::1', 'Chrome 104.0.0.0', 'Windows 10');
-
 -- --------------------------------------------------------
 
 --
@@ -57,6 +50,7 @@ CREATE TABLE `user_management` (
   `password` varchar(255) NOT NULL,
   `user_type` char(2) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
+  `last_login` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
@@ -67,15 +61,9 @@ CREATE TABLE `user_management` (
 -- Dumping data for table `user_management`
 --
 
-INSERT INTO `user_management` (`user_id`, `first_name`, `last_name`, `phone_number`, `password`, `user_type`, `status`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'Admin', 'Singh', '1234567890', '827ccb0eea8a706c4c34a16891f84e7b', 's', 1, 1, '2019-09-13 21:56:49', NULL, NULL),
-(7, 'deepinder', 'singh', '9915099247', '827ccb0eea8a706c4c34a16891f84e7b', 's', 1, 6, '2020-07-20 13:45:58', NULL, NULL),
-(10, 'simranjeet', 'simgh', '', '', 'a', 1, 1, '2020-07-20 15:45:31', NULL, NULL),
-(11, 'vinod', 'kumar', '', '', 's', 1, 1, '2020-07-27 12:24:10', NULL, NULL),
-(12, 'ms choudhary', 'choudhary', '', '', 's', 1, 11, '2020-07-27 17:01:51', 11, '2020-07-28 11:38:04'),
-(13, 'vinodh', 'k', '', '', 's', 1, 12, '2020-07-28 11:53:35', 11, '2020-07-28 14:45:55'),
-(14, 'kirnesh', 'chaplot', '', '', 'a', 1, 11, '2020-08-05 09:16:36', NULL, NULL),
-(15, 'manyak', 'purohit', '', '', 's', 1, 11, '2020-08-17 14:38:51', NULL, NULL);
+INSERT INTO `user_management` (`user_id`, `first_name`, `last_name`, `phone_number`, `password`, `user_type`, `status`, `last_login`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
+(1, 'Admin', 'Singh', '1234567890', '21232f297a57a5a743894a0e4a801fc3', 's', 1, '2022-08-28 17:36:00', 1, '2019-09-13 21:56:49', NULL, NULL),
+(18, 'Deepu', 'Bhasin', '9915099247', 'e10adc3949ba59abbe56e057f20f883e', 'e', 1, '2022-08-28 17:35:50', 1, '2022-08-27 22:50:36', 1, '2022-08-28 00:38:55');
 
 --
 -- Indexes for dumped tables
@@ -101,13 +89,13 @@ ALTER TABLE `user_management`
 -- AUTO_INCREMENT for table `loginactivity`
 --
 ALTER TABLE `loginactivity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_management`
 --
 ALTER TABLE `user_management`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
