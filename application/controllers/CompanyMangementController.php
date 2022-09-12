@@ -32,7 +32,7 @@ class CompanyMangementController extends MY_Controller
             'company_name' => strtolower($company_name)
         ];
 
-        $response = $this->UserManagmentModel->getCount('company_management', $whereData);
+        $response = $this->CompanyMangementModel->getCount('company_management', $whereData);
 
         if ($response == 0) {
             $insertData = [
@@ -41,7 +41,7 @@ class CompanyMangementController extends MY_Controller
                 'created_by' => $this->getLoggedInUser()->user_id,
                 'created_dt' => getCurrentTime(),
             ];
-            $response = $this->UserManagmentModel->insertData('company_management', $insertData);
+            $response = $this->CompanyMangementModel->insertData('company_management', $insertData);
 
             if ($response > 0) {
                 $color = 'success';
@@ -60,22 +60,41 @@ class CompanyMangementController extends MY_Controller
     public function viewCompanies()
     {
         $this->data['title'] = 'View Companies';
-        $this->data['page_data'] = $this->UserManagmentModel->getByTableName('company_management');
+        $this->data['page_data'] = $this->CompanyMangementModel->getByTableName('company_management');
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/companymanagement/view_companies');
         $this->load->view('web/includes/footer');
     }
+
+    public function viewCompanyProfile($id)
+    {
+        $id = (int)base64_decode($id);
+        $response = $this->CompanyMangementModel->getCount('company_management', ['cid' => $id]);
+
+        if ($response != 1) {
+            $color = 'danger';
+            $message = "Company does not exist";
+            $this->redirectWithMessage($color, $message, 'view_companies');
+        }
+
+        $this->data['title'] = 'View Company';
+        $this->data['page_data'] = $this->CompanyMangementModel->getUserProfileWithWhere($id);
+        $this->load->view('web/includes/header', $this->data);
+        $this->load->view('web/usermanagement/view_user_profile');
+        $this->load->view('web/includes/footer');
+    }
+
     public function changeStatus(string $id = '', string $status = '')
     {
         $id = (int)base64_decode($id);
         $status = (int)base64_decode($status);
-        $response = $this->UserManagmentModel->getCount('company_management', ['cid' => $id]);
+        $response = $this->CompanyMangementModel->getCount('company_management', ['cid' => $id]);
 
         if ($response != 1) {
             $color = 'danger';
             $message = "Company does not exist";
         } else {
-            $response = $this->UserManagmentModel->updateData(
+            $response = $this->CompanyMangementModel->updateData(
                 'company_management',
                 ['cid' => $id],
                 ['status' =>  !$status]     // making active or inactive by adding not condtion
@@ -90,4 +109,6 @@ class CompanyMangementController extends MY_Controller
         }
         $this->redirectWithMessage($color, $message, 'view_companies');
     }
+
+    
 }
