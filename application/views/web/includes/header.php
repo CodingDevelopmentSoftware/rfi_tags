@@ -106,7 +106,7 @@
                                 <span class="sidebar-item-title">Dashboard</span>
                             </a>
                         </li>
-                        <?php if ($user_type == 's') { ?>
+                        <?php if ($user_type == 's'): ?>
                             <li>
                                 <a href="#">
                                     <span class="sidebar-item-icon fa-stack ">
@@ -127,7 +127,6 @@
                                     </li>
                                 </ul>
                             </li>
-                        <?php } ?>
                         <li>
                             <a href="#">
                                 <span class="sidebar-item-icon fa-stack ">
@@ -135,19 +134,20 @@
                                     <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title">Area</span>
+                                <span class="sidebar-item-title">Company Mangement</span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/add_area">Add Area</a>
+                                    <a href="<?= base_url('add_company'); ?>">Add Company</a>
                                 </li>
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/view_area">All Area</a>
+                                <a href="<?= base_url('view_companies'); ?>">View Companies</a>
                                 </li>
                             </ul>
                         </li>
+                        <?php endif; ?>
                         <li>
                             <a href="#">
                                 <span class="sidebar-item-icon fa-stack ">

@@ -81,4 +81,7 @@ $route['edit_user_profile/(:any)']['get'] = 'UserManagmentController/editUserPro
 $route['save_update_user']['post'] = 'UserManagmentController/saveUpdateUser';
 $route['login_activities/(:any)']['get'] = 'UserManagmentController/loginActivities/$1';
 
-
+// Company Mangement
+$route['add_company']['get'] = 'CompanyMangementController/index';
+$route['save_company']['post'] = 'CompanyMangementController/saveCompany';
+$route['view_companies']['get'] = 'CompanyMangementController/viewCompanies';

@@ -21,7 +21,7 @@
         public function saveUser()
         {
             if (!postAllowed()) {
-                redirect('UserManagment');
+                redirect('add_user');
             }
             $this->load->library('form_validation');
             $this->form_validation->set_rules('first_name', 'First Name', 'required');
@@ -163,7 +163,7 @@
         public function saveUpdateUser()
         {
             if (!postAllowed()) {
-                redirect('UserManagment');
+                redirect('view_users');
             }
             $id = $this->input->post('user_id');
             $this->load->library('form_validation');
