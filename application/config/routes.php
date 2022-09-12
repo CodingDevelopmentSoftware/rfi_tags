@@ -85,3 +85,4 @@ $route['login_activities/(:any)']['get'] = 'UserManagmentController/loginActivit
 $route['add_company']['get'] = 'CompanyMangementController/index';
 $route['save_company']['post'] = 'CompanyMangementController/saveCompany';
 $route['view_companies']['get'] = 'CompanyMangementController/viewCompanies';
+$route['change_status_company/(:any)/(:any)']['get'] = 'CompanyMangementController/changeStatus/$1/$2';
