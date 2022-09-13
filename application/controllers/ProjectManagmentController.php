@@ -91,13 +91,13 @@ class ProjectManagmentController extends MY_Controller
     {
         $id = (int)base64_decode($id);
         $status = (int)base64_decode($status);
-        $response = $this->CompanyManagementModel->getCount('project_management', ['pid' => $id]);
+        $response = $this->ProjectManagmentModel->getCount('project_management', ['pid' => $id]);
 
         if ($response != 1) {
             $color = 'danger';
             $message = "Project does not exist";
         } else {
-            $response = $this->CompanyManagementModel->updateData(
+            $response = $this->ProjectManagmentModel->updateData(
                 'project_management',
                 ['pid' => $id],
                 ['status' =>  !$status]     // making active or inactive by adding not condtion
@@ -113,51 +113,53 @@ class ProjectManagmentController extends MY_Controller
         $this->redirectWithMessage($color, $message, 'view_projects');
     }
 
-    public function editCompanyProfile($id)
+    public function editProjectProfile($id)
     {
         $id = (int)base64_decode($id);
-        $response = $this->UserManagmentModel->getCount('company_management', ['cid' => $id]);
+        $response = $this->ProjectManagmentModel->getCount('project_management', ['pid' => $id]);
 
         if ($response != 1) {
             $color = 'danger';
-            $message = "Company does not exist";
+            $message = "Project does not exist";
             $this->redirectWithMessage($color, $message, 'view_companies');
         }
 
-        $this->data['title'] = 'Edit User';
-        $this->data['page_data'] = $this->UserManagmentModel->getSingleRowWithWhere('*', 'company_management', ['cid' => $id]);
+        $this->data['title'] = 'Edit Project';
+        $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
+        $this->data['page_data_database'] = $this->ProjectManagmentModel->getProjectWithWhere($id);
         $this->load->view('web/includes/header', $this->data);
-        $this->load->view('web/companymanagement/edit_company_profile');
+        $this->load->view('web/projectmanagement/edit_project_profile');
         $this->load->view('web/includes/footer');
     }
 
-    public function saveUpdateCompany()
+    public function saveUpdateProject()
     {
         if (!postAllowed()) {
-            redirect('view_companies');
+            redirect('view_projectss');
         }
-        $id = $this->input->post('company_id');
+        $id = $this->input->post('project_id');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('company_name', 'Company Name', 'required');
+        $this->form_validation->set_rules('project_name', 'Project Name', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->index();
-            return redirect("edit_company_profile/" . base64_encode($id));
+            return redirect("edit_project_profile/" . base64_encode($id));
         }
 
         $updateData = [
-            'company_name' => postDataFilterhtml($this->input->post('company_name')),
+            'company_id' => postDataFilterhtml($this->input->post('company_id')),
+            'project_name' => postDataFilterhtml($this->input->post('project_name')),
             'modified_by' => $this->getLoggedInUser()->user_id,
             'modified_dt' => getCurrentTime(),
         ];
-        $response = $this->UserManagmentModel->updateData('company_management', ['cid' => $id], $updateData);
+        $response = $this->UserManagmentModel->updateData('project_management', ['pid' => $id], $updateData);
 
         if ($response > 0) {
             $color = 'success';
-            $message = "Company updated Successfully";
+            $message = "Project updated Successfully";
         } else {
             $color = 'danger';
             $message = "Database Problem";
         }
-        $this->redirectWithMessage($color, $message, 'view_companies');
+        $this->redirectWithMessage($color, $message, 'view_projects');
     }
 }

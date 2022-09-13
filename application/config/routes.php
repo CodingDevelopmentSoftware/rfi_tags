@@ -97,5 +97,5 @@ $route['save_project']['post'] = 'ProjectManagmentController/saveProject';
 $route['view_projects']['get'] = 'ProjectManagmentController/viewProjects';
 $route['change_status_project/(:any)/(:any)']['get'] = 'ProjectManagmentController/changeStatus/$1/$2';
 $route['view_project_profile/(:any)']['get'] = 'ProjectManagmentController/viewProjectProfile/$1';
-$route['edit_company_profile/(:any)']['get'] = 'ProjectManagmentController/editCompanyProfile/$1';
-$route['save_update_company']['post'] = 'ProjectManagmentController/saveUpdateCompany';
+$route['edit_project_profile/(:any)']['get'] = 'ProjectManagmentController/editProjectProfile/$1';
+$route['save_update_project']['post'] = 'ProjectManagmentController/saveUpdateProject';
