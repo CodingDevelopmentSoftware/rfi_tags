@@ -81,11 +81,21 @@ $route['edit_user_profile/(:any)']['get'] = 'UserManagmentController/editUserPro
 $route['save_update_user']['post'] = 'UserManagmentController/saveUpdateUser';
 $route['login_activities/(:any)']['get'] = 'UserManagmentController/loginActivities/$1';
 
-// Company Mangement
-$route['add_company']['get'] = 'CompanyMangementController/index';
-$route['save_company']['post'] = 'CompanyMangementController/saveCompany';
-$route['view_companies']['get'] = 'CompanyMangementController/viewCompanies';
-$route['change_status_company/(:any)/(:any)']['get'] = 'CompanyMangementController/changeStatus/$1/$2';
-$route['view_company_profile/(:any)']['get'] = 'CompanyMangementController/viewCompanyProfile/$1';
-$route['edit_company_profile/(:any)']['get'] = 'CompanyMangementController/editCompanyProfile/$1';
-$route['save_update_company']['post'] = 'CompanyMangementController/saveUpdateCompany';
+// Company Management
+$route['add_company']['get'] = 'CompanyManagementController/index';
+$route['save_company']['post'] = 'CompanyManagementController/saveCompany';
+$route['view_companies']['get'] = 'CompanyManagementController/viewCompanies';
+$route['change_status_company/(:any)/(:any)']['get'] = 'CompanyManagementController/changeStatus/$1/$2';
+$route['view_company_profile/(:any)']['get'] = 'CompanyManagementController/viewCompanyProfile/$1';
+$route['edit_company_profile/(:any)']['get'] = 'CompanyManagementController/editCompanyProfile/$1';
+$route['save_update_company']['post'] = 'CompanyManagementController/saveUpdateCompany';
+
+
+// Project Management
+$route['add_company']['get'] = 'CompanyManagementController/index';
+$route['save_company']['post'] = 'CompanyManagementController/saveCompany';
+$route['view_companies']['get'] = 'CompanyManagementController/viewCompanies';
+$route['change_status_company/(:any)/(:any)']['get'] = 'CompanyManagementController/changeStatus/$1/$2';
+$route['view_company_profile/(:any)']['get'] = 'CompanyManagementController/viewCompanyProfile/$1';
+$route['edit_company_profile/(:any)']['get'] = 'CompanyManagementController/editCompanyProfile/$1';
+$route['save_update_company']['post'] = 'CompanyManagementController/saveUpdateCompany';
