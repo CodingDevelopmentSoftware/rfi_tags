@@ -87,3 +87,5 @@ $route['save_company']['post'] = 'CompanyMangementController/saveCompany';
 $route['view_companies']['get'] = 'CompanyMangementController/viewCompanies';
 $route['change_status_company/(:any)/(:any)']['get'] = 'CompanyMangementController/changeStatus/$1/$2';
 $route['view_company_profile/(:any)']['get'] = 'CompanyMangementController/viewCompanyProfile/$1';
+$route['edit_company_profile/(:any)']['get'] = 'CompanyMangementController/editCompanyProfile/$1';
+$route['save_update_company']['post'] = 'CompanyMangementController/saveUpdateCompany';

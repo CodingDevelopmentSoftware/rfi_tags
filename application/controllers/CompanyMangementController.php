@@ -9,13 +9,14 @@ class CompanyMangementController extends MY_Controller
     }
     public function index()
     {
-        $this->data['title']='Add Company';
-        $this->load->view('web/includes/header',$this->data);
+        $this->data['title'] = 'Add Company';
+        $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/companymanagement/add_company');
         $this->load->view('web/includes/footer');
     }
-    public function saveCompany(){
-        
+    public function saveCompany()
+    {
+
         if (!postAllowed()) {
             redirect('add_company');
         }
@@ -36,7 +37,7 @@ class CompanyMangementController extends MY_Controller
 
         if ($response == 0) {
             $insertData = [
-               'company_name' => strtolower($company_name),
+                'company_name' => strtolower($company_name),
                 'status' => 1,
                 'created_by' => $this->getLoggedInUser()->user_id,
                 'created_dt' => getCurrentTime(),
@@ -56,7 +57,7 @@ class CompanyMangementController extends MY_Controller
         }
         $this->redirectWithMessage($color, $message, 'add_company');
     }
-    
+
     public function viewCompanies()
     {
         $this->data['title'] = 'View Companies';
@@ -80,7 +81,7 @@ class CompanyMangementController extends MY_Controller
         $this->data['title'] = 'View Company';
         $this->data['page_data'] = $this->CompanyMangementModel->getUserProfileWithWhere($id);
         $this->load->view('web/includes/header', $this->data);
-        $this->load->view('web/usermanagement/view_user_profile');
+        $this->load->view('web/companymanagement/view_company_profile');
         $this->load->view('web/includes/footer');
     }
 
@@ -110,5 +111,51 @@ class CompanyMangementController extends MY_Controller
         $this->redirectWithMessage($color, $message, 'view_companies');
     }
 
-    
+    public function editCompanyProfile($id)
+    {
+        $id = (int)base64_decode($id);
+        $response = $this->UserManagmentModel->getCount('company_management', ['cid' => $id]);
+
+        if ($response != 1) {
+            $color = 'danger';
+            $message = "Company does not exist";
+            $this->redirectWithMessage($color, $message, 'view_companies');
+        }
+
+        $this->data['title'] = 'Edit User';
+        $this->data['page_data'] = $this->UserManagmentModel->getSingleRowWithWhere('*', 'company_management', ['cid' => $id]);
+        $this->load->view('web/includes/header', $this->data);
+        $this->load->view('web/companymanagement/edit_company_profile');
+        $this->load->view('web/includes/footer');
+    }
+
+    public function saveUpdateCompany()
+    {
+        if (!postAllowed()) {
+            redirect('view_companies');
+        }
+        $id = $this->input->post('company_id');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('company_name', 'Company Name', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->index();
+            return redirect("edit_company_profile/" . base64_encode($id));
+        }
+
+        $updateData = [
+            'company_name' => postDataFilterhtml($this->input->post('company_name')),
+            'modified_by' => $this->getLoggedInUser()->user_id,
+            'modified_dt' => getCurrentTime(),
+        ];
+        $response = $this->UserManagmentModel->updateData('company_management', ['cid' => $id], $updateData);
+
+        if ($response > 0) {
+            $color = 'success';
+            $message = "Company updated Successfully";
+        } else {
+            $color = 'danger';
+            $message = "Database Problem";
+        }
+        $this->redirectWithMessage($color, $message, 'view_companies');
+    }
 }
