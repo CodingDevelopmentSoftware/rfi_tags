@@ -92,10 +92,10 @@ $route['save_update_company']['post'] = 'CompanyManagementController/saveUpdateC
 
 
 // Project Management
-$route['add_company']['get'] = 'CompanyManagementController/index';
-$route['save_company']['post'] = 'CompanyManagementController/saveCompany';
-$route['view_companies']['get'] = 'CompanyManagementController/viewCompanies';
-$route['change_status_company/(:any)/(:any)']['get'] = 'CompanyManagementController/changeStatus/$1/$2';
-$route['view_company_profile/(:any)']['get'] = 'CompanyManagementController/viewCompanyProfile/$1';
-$route['edit_company_profile/(:any)']['get'] = 'CompanyManagementController/editCompanyProfile/$1';
-$route['save_update_company']['post'] = 'CompanyManagementController/saveUpdateCompany';
+$route['add_project']['get'] = 'ProjectManagmentController/index';
+$route['save_project']['post'] = 'ProjectManagmentController/saveProject';
+$route['view_projects']['get'] = 'ProjectManagmentController/viewProjects';
+$route['change_status_company/(:any)/(:any)']['get'] = 'ProjectManagmentController/changeStatus/$1/$2';
+$route['view_company_profile/(:any)']['get'] = 'ProjectManagmentController/viewCompanyProfile/$1';
+$route['edit_company_profile/(:any)']['get'] = 'ProjectManagmentController/editCompanyProfile/$1';
+$route['save_update_company']['post'] = 'ProjectManagmentController/saveUpdateCompany';

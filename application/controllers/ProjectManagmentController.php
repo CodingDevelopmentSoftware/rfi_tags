@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class CompanyManagementController extends MY_Controller
+class ProjectManagmentController extends MY_Controller
 {
     public function __construct()
     {
@@ -9,61 +9,63 @@ class CompanyManagementController extends MY_Controller
     }
     public function index()
     {
-        $this->data['title'] = 'Add Company';
+        $this->data['title'] = 'Add Project';
+        $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
         $this->load->view('web/includes/header', $this->data);
-        $this->load->view('web/companymanagement/add_company');
+        $this->load->view('web/projectmanagement/add_project');
         $this->load->view('web/includes/footer');
     }
-    public function saveCompany()
+    public function saveProject()
     {
 
         if (!postAllowed()) {
-            redirect('add_company');
+            redirect('add_project');
         }
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('company_name', 'Company Name', 'required');
+        $this->form_validation->set_rules('project_name', 'Project Name', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->index();
             return;
         }
 
-        $company_name = postDataFilterhtml($this->input->post('company_name'));
+        $project_name = postDataFilterhtml($this->input->post('project_name'));
 
         $whereData = [
-            'company_name' => strtolower($company_name)
+            'project_name' => strtolower($project_name)
         ];
 
-        $response = $this->CompanyManagementModel->getCount('company_management', $whereData);
+        $response = $this->CompanyManagementModel->getCount('project_management', $whereData);
 
         if ($response == 0) {
             $insertData = [
-                'company_name' => strtolower($company_name),
+                'company_id' => postDataFilterhtml($this->input->post('company_id')),
+                'project_name' => strtolower($project_name),
                 'status' => 1,
                 'created_by' => $this->getLoggedInUser()->user_id,
                 'created_dt' => getCurrentTime(),
             ];
-            $response = $this->CompanyManagementModel->insertData('company_management', $insertData);
+            $response = $this->ProjectManagmentModel->insertData('project_management', $insertData);
 
             if ($response > 0) {
                 $color = 'success';
-                $message = "$company_name company created Successfully";
+                $message = "$project_name Project created Successfully";
             } else {
                 $color = 'danger';
                 $message = "Database Problem";
             }
         } else {
             $color = 'warning';
-            $message = "$company_name company already Created";
+            $message = "$project_name Project already Created";
         }
-        $this->redirectWithMessage($color, $message, 'add_company');
+        $this->redirectWithMessage($color, $message, 'add_project');
     }
 
-    public function viewCompanies()
+    public function viewProjects()
     {
         $this->data['title'] = 'View Companies';
-        $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
+        $this->data['page_data'] = $this->ProjectManagmentModel->getAllProjects();
         $this->load->view('web/includes/header', $this->data);
-        $this->load->view('web/companymanagement/view_companies');
+        $this->load->view('web/projectmanagement/view_projects');
         $this->load->view('web/includes/footer');
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2022 at 06:33 AM
+-- Generation Time: Sep 13, 2022 at 10:31 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -42,7 +42,7 @@ CREATE TABLE `company_management` (
 --
 
 INSERT INTO `company_management` (`cid`, `company_name`, `status`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'wavelinx', 1, 1, '2022-09-12 23:51:16', NULL, NULL);
+(1, 'Wavelinx Primate Limited', 0, 1, '2022-09-12 23:51:16', 1, '2022-09-13 13:14:13');
 
 -- --------------------------------------------------------
 
@@ -58,6 +58,30 @@ CREATE TABLE `loginactivity` (
   `login_agent` varchar(255) NOT NULL,
   `platform` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_management`
+--
+
+CREATE TABLE `project_management` (
+  `pid` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `project_name` varchar(150) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_dt` datetime NOT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `modified_dt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `project_management`
+--
+
+INSERT INTO `project_management` (`pid`, `company_id`, `project_name`, `status`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
+(1, 1, 'mc tags', 1, 1, '2022-09-13 13:49:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -106,6 +130,12 @@ ALTER TABLE `loginactivity`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `project_management`
+--
+ALTER TABLE `project_management`
+  ADD PRIMARY KEY (`pid`);
+
+--
 -- Indexes for table `user_management`
 --
 ALTER TABLE `user_management`
@@ -126,6 +156,12 @@ ALTER TABLE `company_management`
 --
 ALTER TABLE `loginactivity`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project_management`
+--
+ALTER TABLE `project_management`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_management`
