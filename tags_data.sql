@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2022 at 02:11 PM
+-- Generation Time: Sep 13, 2022 at 06:33 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `tags_data`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_management`
+--
+
+CREATE TABLE `company_management` (
+  `cid` int(11) NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_dt` datetime NOT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `modified_dt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `company_management`
+--
+
+INSERT INTO `company_management` (`cid`, `company_name`, `status`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
+(1, 'wavelinx', 1, 1, '2022-09-12 23:51:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -62,12 +85,19 @@ CREATE TABLE `user_management` (
 --
 
 INSERT INTO `user_management` (`user_id`, `first_name`, `last_name`, `phone_number`, `password`, `user_type`, `status`, `last_login`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'Admin', 'Singh', '1234567890', '21232f297a57a5a743894a0e4a801fc3', 's', 1, '2022-08-28 17:36:00', 1, '2019-09-13 21:56:49', NULL, NULL),
-(18, 'Deepu', 'Bhasin', '9915099247', 'e10adc3949ba59abbe56e057f20f883e', 'e', 1, '2022-08-28 17:35:50', 1, '2022-08-27 22:50:36', 1, '2022-08-28 00:38:55');
+(1, 'Admin', 'Singh', '1234567890', '21232f297a57a5a743894a0e4a801fc3', 's', 1, '2022-09-12 23:18:26', 1, '2019-09-13 21:56:49', NULL, NULL),
+(18, 'Deepu', 'Bhasin', '9915099247', 'e10adc3949ba59abbe56e057f20f883e', 'e', 0, '2022-08-29 11:33:25', 1, '2022-08-27 22:50:36', 1, '2022-08-28 00:38:55'),
+(19, 'Sarbdeep', 'Singh', '1122334455', 'e10adc3949ba59abbe56e057f20f883e', 'e', 1, '2022-09-06 10:40:34', 1, '2022-09-06 10:39:29', NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `company_management`
+--
+ALTER TABLE `company_management`
+  ADD PRIMARY KEY (`cid`);
 
 --
 -- Indexes for table `loginactivity`
@@ -86,6 +116,12 @@ ALTER TABLE `user_management`
 --
 
 --
+-- AUTO_INCREMENT for table `company_management`
+--
+ALTER TABLE `company_management`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `loginactivity`
 --
 ALTER TABLE `loginactivity`
@@ -95,7 +131,7 @@ ALTER TABLE `loginactivity`
 -- AUTO_INCREMENT for table `user_management`
 --
 ALTER TABLE `user_management`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
