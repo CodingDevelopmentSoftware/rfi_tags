@@ -69,21 +69,21 @@ class ProjectManagmentController extends MY_Controller
         $this->load->view('web/includes/footer');
     }
 
-    public function viewCompanyProfile($id)
+    public function viewProjectProfile($id)
     {
         $id = (int)base64_decode($id);
-        $response = $this->CompanyManagementModel->getCount('company_management', ['cid' => $id]);
+        $response = $this->ProjectManagmentModel->getCount('project_management', ['pid' => $id]);
 
         if ($response != 1) {
             $color = 'danger';
-            $message = "Company does not exist";
-            $this->redirectWithMessage($color, $message, 'view_companies');
+            $message = "Project does not exist";
+            $this->redirectWithMessage($color, $message, 'view_projects');
         }
 
-        $this->data['title'] = 'View Company';
-        $this->data['page_data'] = $this->CompanyManagementModel->getUserProfileWithWhere($id);
+        $this->data['title'] = 'View Project';
+        $this->data['page_data'] = $this->ProjectManagmentModel->getProjectWithWhere($id);
         $this->load->view('web/includes/header', $this->data);
-        $this->load->view('web/companymanagement/view_company_profile');
+        $this->load->view('web/projectmanagement/view_project_profile');
         $this->load->view('web/includes/footer');
     }
 
