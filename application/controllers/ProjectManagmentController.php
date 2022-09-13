@@ -91,26 +91,26 @@ class ProjectManagmentController extends MY_Controller
     {
         $id = (int)base64_decode($id);
         $status = (int)base64_decode($status);
-        $response = $this->CompanyManagementModel->getCount('company_management', ['cid' => $id]);
+        $response = $this->CompanyManagementModel->getCount('project_management', ['pid' => $id]);
 
         if ($response != 1) {
             $color = 'danger';
-            $message = "Company does not exist";
+            $message = "Project does not exist";
         } else {
             $response = $this->CompanyManagementModel->updateData(
-                'company_management',
-                ['cid' => $id],
+                'project_management',
+                ['pid' => $id],
                 ['status' =>  !$status]     // making active or inactive by adding not condtion
             );
             if ($response == 1) {
                 $color = 'success';
-                $message = "Company Status Changed Successfully";
+                $message = "Project Status Changed Successfully";
             } else {
                 $color = 'danger';
                 $message = "Database Problem";
             }
         }
-        $this->redirectWithMessage($color, $message, 'view_companies');
+        $this->redirectWithMessage($color, $message, 'view_projects');
     }
 
     public function editCompanyProfile($id)
