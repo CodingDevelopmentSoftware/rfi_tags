@@ -147,128 +147,27 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#">
+                                <span class="sidebar-item-icon fa-stack ">
+                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="sidebar-item-arrow fa arrow"></span>
+                                <span class="sidebar-item-title">Project Mangement</span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?= base_url('add_project'); ?>">Add Project</a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                <a href="<?= base_url('view_projects'); ?>">View Projects</a>
+                                </li>
+                            </ul>
+                        </li>
                         <?php endif; ?>
-                        <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title">Location</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/add_location">Add Location</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/view_location">View Location</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title">Vehicle</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/add_vehicle">Add Vehicle</a>
-                                </li>
-                            </ul>
-                            <!-- <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="<?= base_url() ?>Vehicle_controller/#">Add Vehicle (With Excel)</a>
-                                    </li>
-                                </ul> -->
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/view_all_vehicle">All Vehicle</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/search_vehicle">Search Vehicle</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title">Device</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/add_device">Add Device</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/view_device">All Device</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/connect_device">Mapping Device</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title">Reports</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/area_wise">Area Wise</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/device_wise">Device Wise</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/location_wise">Location Wise</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/vehicle_wise">Vehicle Wise</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/plant_in">Plant IN</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/plant_out">Plant OUT</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url() ?>Vehicle_controller/total_count">Summary Report</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </div>
