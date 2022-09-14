@@ -12,7 +12,7 @@
                     <?php $this->load->view('web/includes/message'); ?>
                     <div class="row">
                         <div class="col-lg-12">
-                            <form role="form" method="post" onsubmit="return confirm('Are you sure you want to Add Project ?');" action="<?= base_url('save_project'); ?>">
+                            <form role="form" method="post" onsubmit="return confirm('Are you sure you want to Upload Excel ?');" action="<?= base_url('show_upload_excel'); ?>" enctype='multipart/form-data'>
                                 <div class="form-group">
                                     <label>Company Name</label>
                                     <select class="form-control" name="company_id" id="company_id" required>
@@ -27,6 +27,10 @@
                                     <select class="form-control" name="project_id" required id="project_id">
                                         <option value="">Select Project </option>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="upload_excel">Upload Excel</label>
+                                    <input type="file" name="upload_excel" id="upload_excel" class="form-control"/>
                                 </div>
                                 <button type="submit" class="btn btn-success" name="add">Add</button>
                                 <button type="reset" class="btn btn-info">Clear</button>
@@ -60,7 +64,7 @@ $('#company_id').change(function(e){
             $(elmentId).html('');
             $(elmentId).append(`<option value=''> Select Project</option>`)
             response.map(element => {
-                $(elmentId).append(`<option value='${element.id}' >${element.project_name}</option>`)
+                $(elmentId).append(`<option value='${element.pid}' >${element.project_name}</option>`)
             })
         }
     })  

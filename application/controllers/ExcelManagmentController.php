@@ -15,4 +15,10 @@ class ExcelManagmentController extends MY_Controller
         $this->load->view('web/excelmanagement/upload_excel');
         
     }
+    public function showUploadExcel(){
+        echo "<pre>";
+        print_r($_POST);
+        print_r($_FILES);
+        exit;
+    }
 }
