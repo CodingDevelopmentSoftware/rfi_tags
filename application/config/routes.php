@@ -99,6 +99,7 @@ $route['change_status_project/(:any)/(:any)']['get'] = 'ProjectManagmentControll
 $route['view_project_profile/(:any)']['get'] = 'ProjectManagmentController/viewProjectProfile/$1';
 $route['edit_project_profile/(:any)']['get'] = 'ProjectManagmentController/editProjectProfile/$1';
 $route['save_update_project']['post'] = 'ProjectManagmentController/saveUpdateProject';
+$route['get_projects']['post'] = 'ProjectManagmentController/getProjects';
 
 // Excel Management
 $route['upload_excel']['get'] = 'ExcelManagmentController/index';

@@ -10,8 +10,9 @@ class ExcelManagmentController extends MY_Controller
     public function index()
     {
         $this->data['title']='Upload Excel';
+        $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
         $this->load->view('web/includes/header',$this->data);
-        $this->load->view('web/dashboard/dashboard');
-        $this->load->view('web/includes/footer');
+        $this->load->view('web/excelmanagement/upload_excel');
+        
     }
 }

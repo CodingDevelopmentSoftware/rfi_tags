@@ -13,6 +13,20 @@ class MY_Model extends CI_Model
         return $this->db->select($select)->limit($limit, $offset)->order_by($order_by)->get($tableName)->result();
     }
 
+    public function getDataByWhereByOrderBy(
+        string $select = '',
+        string $tableName = '',
+        array $where = [],
+        string $orderAccordingTo = '',
+        string $orderBy = ''
+    ): array  {
+        return $this->db->select($select)
+        ->order_by($orderAccordingTo, $orderBy)
+        ->where($where)
+        ->get($tableName)
+        ->result();
+    }
+
     public function getByTableName(
         string $tableName
     ): array {

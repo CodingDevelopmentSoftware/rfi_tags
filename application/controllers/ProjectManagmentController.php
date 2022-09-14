@@ -162,4 +162,27 @@ class ProjectManagmentController extends MY_Controller
         }
         $this->redirectWithMessage($color, $message, 'view_projects');
     }
+
+    public function getProjects()
+    {
+        if (!postAllowed()) {
+            return false;
+        }
+        
+        $companyId = $this->input->post('company_id');
+        $data = $this->ProjectManagmentModel->getDataByWhereByOrderBy(
+            'pid,project_name',
+            'project_management',
+            ['company_id' => $companyId],
+            'project_name',
+            'ASC'
+        );
+        header('Content-Type: application/json');
+        if(!empty($data)){
+            echo json_encode($data); 
+        } else {
+            echo json_encode([]);
+        }
+        
+    }
 }
