@@ -34,6 +34,3 @@
     <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
-<?php
-include_once('footer.php');
-?>

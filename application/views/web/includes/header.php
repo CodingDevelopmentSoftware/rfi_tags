@@ -114,7 +114,7 @@
                                         <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                     </span>
                                     <span class="sidebar-item-arrow fa arrow"></span>
-                                    <span class="sidebar-item-title">User Management </span>
+                                    <span class="sidebar-item-title" title="User Management">User Management </span>
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -134,16 +134,16 @@
                                     <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title">Company Mangement</span>
+                                <span class="sidebar-item-title" title="Company Mangement">Company Mangement</span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= base_url('add_company'); ?>">Add Company</a>
+                                    <a href="<?= base_url('add_company'); ?>" title="Add Company">Add Company</a>
                                 </li>
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                <a href="<?= base_url('view_companies'); ?>">View Companies</a>
+                                <a href="<?= base_url('view_companies'); ?>" title="View Companies">View Companies</a>
                                 </li>
                             </ul>
                         </li>
@@ -154,19 +154,29 @@
                                     <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title">Project Mangement</span>
+                                <span class="sidebar-item-title" title="Project Mangement">Project Mangement</span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= base_url('add_project'); ?>">Add Project</a>
+                                    <a href="<?= base_url('add_project'); ?>" title="Add Project">Add Project</a>
                                 </li>
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                <a href="<?= base_url('view_projects'); ?>">View Projects</a>
+                                <a href="<?= base_url('view_projects'); ?>" title="View Projects">View Projects</a>
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="<?= base_url('upload_excel'); ?>" title="Upload Excel">
+                                <span class="sidebar-item-icon fa-stack">
+                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                    <i class="fa fa-dashboard fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="sidebar-item-title">Upload Excel</span>
+                            </a>
+                        </li>
+                        
                         <?php endif; ?>
                     </ul>
                 </div>
