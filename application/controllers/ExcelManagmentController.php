@@ -16,9 +16,6 @@ class ExcelManagmentController extends MY_Controller
         
     }
     public function showUploadExcel(){
-        echo "<pre>";
-        print_r($_POST);
-        print_r($_FILES);
-        exit;
+        
     }
 }
