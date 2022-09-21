@@ -19,16 +19,16 @@ class MY_Model extends CI_Model
         array $where = [],
         string $orderAccordingTo = '',
         string $orderBy = ''
-    ): array  {
+    ): array {
         return $this->db->select($select)
-        ->order_by($orderAccordingTo, $orderBy)
-        ->where($where)
-        ->get($tableName)
-        ->result();
+            ->order_by($orderAccordingTo, $orderBy)
+            ->where($where)
+            ->get($tableName)
+            ->result();
     }
 
     public function getByTableName(
-        string $tableName
+        string $tableName = ''
     ): array {
         return $this->db->get($tableName)->result();
     }
@@ -95,5 +95,42 @@ class MY_Model extends CI_Model
         array $where = []
     ): int {
         return $this->db->where($where)->get($table)->num_rows();
+    }
+
+    public function insertBatch(
+        string $table = '',
+        array $insertData = []
+    ): int {
+        $this->db->trans_begin();
+        $this->db->insert_batch($table, $insertData);
+        if ($this->db->affected_rows()) {
+            $this->db->trans_commit();
+            return  1;
+        } else {
+            $this->db->trans_rollback();
+            return 0;
+        }
+    }
+
+    public function getDataWithWhereIn(
+        string $select = '',
+        string $tableName = '',
+        array $whereInArray = []
+    ): ?array {
+        return $this->db
+            ->select($select)
+            ->where_in($whereInArray)
+            ->get($tableName)
+            ->result();
+    }
+
+    public function truncateTable(
+        string $tableName = ''
+    ): int {
+        if ($this->db->truncate($tableName)) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

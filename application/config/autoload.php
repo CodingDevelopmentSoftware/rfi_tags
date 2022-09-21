@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'form', 'basic');
+$autoload['helper'] = array('url', 'form', 'basic','constants','filefilter');
 
 /*
 | -------------------------------------------------------------------
@@ -138,5 +138,6 @@ $autoload['model'] = [
     'UserManagmentModel',
     'Vehicle_admin',
     'CompanyManagementModel',
-    'ProjectManagmentModel'
+    'ProjectManagmentModel',
+    'ExcelManagmentModel'
 ];

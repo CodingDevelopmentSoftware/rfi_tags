@@ -16,6 +16,14 @@ function postAllowed()
     return true;
 }
 
+function fileAllowed()
+{
+    if (count($_FILES) <= 0 && $_SERVER['REQUEST_METHOD'] != 'POST') {
+        return false;
+    }
+    return true;
+}
+
 function postDataFilterhtml($data)
 {
     global $CI;
