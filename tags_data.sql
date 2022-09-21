@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2022 at 10:31 AM
+-- Generation Time: Sep 21, 2022 at 11:43 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -42,7 +42,7 @@ CREATE TABLE `company_management` (
 --
 
 INSERT INTO `company_management` (`cid`, `company_name`, `status`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'Wavelinx Primate Limited', 0, 1, '2022-09-12 23:51:16', 1, '2022-09-13 13:14:13');
+(1, 'Wavelinx Primate Limited', 1, 1, '2022-09-12 23:51:16', 1, '2022-09-13 13:14:13');
 
 -- --------------------------------------------------------
 
@@ -58,6 +58,15 @@ CREATE TABLE `loginactivity` (
   `login_agent` varchar(255) NOT NULL,
   `platform` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loginactivity`
+--
+
+INSERT INTO `loginactivity` (`id`, `user_id`, `last_login`, `ip_address`, `login_agent`, `platform`) VALUES
+(1, 1, '2022-09-14 23:54:35', '::1', 'Chrome 105.0.0.0', 'Windows 10'),
+(2, 1, '2022-09-20 00:18:25', '::1', 'Chrome 105.0.0.0', 'Windows 10'),
+(3, 1, '2022-09-21 01:56:46', '::1', 'Chrome 105.0.0.0', 'Windows 10');
 
 -- --------------------------------------------------------
 
@@ -81,7 +90,28 @@ CREATE TABLE `project_management` (
 --
 
 INSERT INTO `project_management` (`pid`, `company_id`, `project_name`, `status`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 1, 'mc tags', 1, 1, '2022-09-13 13:49:49', NULL, NULL);
+(1, 1, 'Mc Tags', 1, 1, '2022-09-13 13:49:49', 1, '2022-09-14 01:47:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `temp_excel`
+--
+
+CREATE TABLE `temp_excel` (
+  `tid` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `type_of_tag` varchar(255) NOT NULL,
+  `qr_and_bar_code_number` varchar(255) NOT NULL,
+  `rfid_or_id` varchar(255) NOT NULL,
+  `data_exist` tinyint(4) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_dt` datetime NOT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `modified_dt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -109,7 +139,7 @@ CREATE TABLE `user_management` (
 --
 
 INSERT INTO `user_management` (`user_id`, `first_name`, `last_name`, `phone_number`, `password`, `user_type`, `status`, `last_login`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'Admin', 'Singh', '1234567890', '21232f297a57a5a743894a0e4a801fc3', 's', 1, '2022-09-12 23:18:26', 1, '2019-09-13 21:56:49', NULL, NULL),
+(1, 'Admin', 'Singh', '1234567890', '21232f297a57a5a743894a0e4a801fc3', 's', 1, '2022-09-21 01:56:46', 1, '2019-09-13 21:56:49', NULL, NULL),
 (18, 'Deepu', 'Bhasin', '9915099247', 'e10adc3949ba59abbe56e057f20f883e', 'e', 0, '2022-08-29 11:33:25', 1, '2022-08-27 22:50:36', 1, '2022-08-28 00:38:55'),
 (19, 'Sarbdeep', 'Singh', '1122334455', 'e10adc3949ba59abbe56e057f20f883e', 'e', 1, '2022-09-06 10:40:34', 1, '2022-09-06 10:39:29', NULL, NULL);
 
@@ -136,6 +166,14 @@ ALTER TABLE `project_management`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `temp_excel`
+--
+ALTER TABLE `temp_excel`
+  ADD PRIMARY KEY (`tid`),
+  ADD KEY `rfid_or_id_index` (`rfid_or_id`),
+  ADD KEY `qr_and_bar_code_number_index` (`qr_and_bar_code_number`);
+
+--
 -- Indexes for table `user_management`
 --
 ALTER TABLE `user_management`
@@ -155,13 +193,19 @@ ALTER TABLE `company_management`
 -- AUTO_INCREMENT for table `loginactivity`
 --
 ALTER TABLE `loginactivity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `project_management`
 --
 ALTER TABLE `project_management`
   MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `temp_excel`
+--
+ALTER TABLE `temp_excel`
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_management`
