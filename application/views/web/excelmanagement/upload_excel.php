@@ -12,7 +12,7 @@
                     <?php $this->load->view('web/includes/message'); ?>
                     <div class="row">
                         <div class="col-lg-12">
-                            <form role="form" method="post" onsubmit="return confirm('Are you sure you want to Upload Excel ?');" action="<?= base_url('show_upload_excel'); ?>" enctype='multipart/form-data'>
+                            <form role="form" method="post" onsubmit="return confirm('Are you sure you want to Upload Excel ?');" action="<?= base_url('save_upload_excel'); ?>" enctype='multipart/form-data'>
                                 <div class="form-group">
                                     <label>Company Name</label>
                                     <select class="form-control" name="company_id" id="company_id" required>

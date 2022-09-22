@@ -14,7 +14,7 @@ class ExcelManagmentController extends MY_Controller
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/excelmanagement/upload_excel');
     }
-    public function showUploadExcel()
+    public function saveUploadExcel()
     {
         if (!fileAllowed()) {
             redirect('upload_excel');
@@ -86,6 +86,17 @@ class ExcelManagmentController extends MY_Controller
         }
 
         $response = $this->ExcelManagmentModel->insertBatch('temp_excel', $insertData);
+
+        if( $response == 1) {
+            $color = 'success';
+            $message = 'Excel Sheet Uploaded Successfully';
+            $redirect = 'current_excel';  
+        } else {
+            $color = 'danger';
+            $message = 'Excel Sheet Uploaded Successfully';
+            $redirect = 'upload_excel';
+        }
+        $this->redirectWithMessage($color, $message, $redirect);
     }
 
     public function currentExcel()
