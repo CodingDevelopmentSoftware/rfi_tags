@@ -15,12 +15,12 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <td>Company Name</td>
-                                <td><b><?= ucwords($page_data->company_name); ?></b></td>
-                            </tr>
-                            <tr>
                                 <td>Project Name</td>
                                 <td><b><?= ucwords($page_data->project_name); ?></b></td>
+                            </tr>
+                            <tr>
+                                <td>Company Name</td>
+                                <td><b><?= ucwords($page_data->company_name); ?></b></td>
                             </tr>
                             <tr>
                                 <td>Status</td>

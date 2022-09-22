@@ -62,7 +62,7 @@ class ProjectManagmentController extends MY_Controller
 
     public function viewProjects()
     {
-        $this->data['title'] = 'View Companies';
+        $this->data['title'] = 'View Projects';
         $this->data['page_data'] = $this->ProjectManagmentModel->getAllProjects();
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/projectmanagement/view_projects');

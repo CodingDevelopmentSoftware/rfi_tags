@@ -102,7 +102,15 @@ class ExcelManagmentController extends MY_Controller
     public function currentExcel()
     {
         $this->data['title'] = 'Current Excel';
-        $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
+        $this->data['project_data'] = $this->ExcelManagmentModel->getCurrentCompnayProjectName();
+        $this->data['total_count'] = $this->ExcelManagmentModel->getDataWithWhereIn(
+            'COUNT(tid) as total_count',
+            'temp_excel',
+            [1,0]
+        );
+        $this->data['original_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 0]);
+        $this->data['duplicate_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 1]);
+        $this->data['page_data'] = $this->ExcelManagmentModel->getByTableName('company_management');
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/excelmanagement/current_excel');
     }

@@ -8,9 +8,37 @@
                         <i class="fa fa-th fa-fw"></i> <?= strtoupper($title); ?>
                     </h4>
                 </div>
+
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <?php $this->load->view('web/includes/message'); ?>
+                    <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <th>Field</th><th>Value</th><th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>Company Name</td><td><?= $project_data->company_name ?></td>
+                            <td> 
+                                <a href="<?= base_url("view_company_profile/") . base64_encode($project_data->cid); ?>" onclick="return confirm('Are you sure you want to View the profile of <?= ucwords($project_data->company_name); ?> ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Project Name</td><td><?= $project_data->project_name ?></td>
+                            <td>
+                            <a href="<?= base_url("view_project_profile/") . base64_encode($project_data->pid); ?>" onclick="return confirm('Are you sure you want to View the <?= ucwords($project_data->project_name); ?> Project ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total Count</td><td><?= $total_count[0]->total_count ?></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Origianl Count</td><td><?= $original_count ?></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Duplicate Count</td><td><?= $duplicate_count ?></td><td></td>
+                        </tr>
+                    </table>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover" id="user_managment">
                             <thead>
@@ -27,8 +55,7 @@
                             </thead>
                             <tbody>
                                 <?php $c = 0;
-                                foreach ($page_data as $user) {
-                                    if ($this->session->userdata('user_id') != $user->user_id && $user->user_id != 1) { ?>
+                                foreach ($page_data as $user): ?>
                                         <tr>
                                             <td><?= ++$c; ?></td>
                                             <td><?= ucfirst($user->first_name); ?></td>
@@ -46,8 +73,7 @@
                                                 <a href="<?= base_url("login_activities/") . base64_encode($user->user_id) ?>" onclick="return confirm('Are you sure you want to View Login Activities <?= $user->phone_number; ?> ?')" class="btn btn-default btn-xs" title="Login Activities">Activities</a>
                                             </td>
                                         </tr>
-                                <?php }
-                                } ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
