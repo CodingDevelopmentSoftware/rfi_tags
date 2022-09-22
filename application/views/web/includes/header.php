@@ -168,15 +168,30 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="<?= base_url('upload_excel'); ?>" title="Upload Excel">
-                                <span class="sidebar-item-icon fa-stack">
+                            <a href="#">
+                                <span class="sidebar-item-icon fa-stack ">
                                     <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-dashboard fa-stack-1x fa-inverse"></i>
+                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                 </span>
-                                <span class="sidebar-item-title">Upload Excel</span>
+                                <span class="sidebar-item-arrow fa arrow"></span>
+                                <span class="sidebar-item-title" title="Project Mangement">Excel Mangement</span>
                             </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a download href="<?= EXCEL_PATH ?>" title="Add Project">Download Sample</a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?= base_url('upload_excel'); ?>" title="Add Project">Upload Excel</a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                <a href="<?= base_url('current_excel'); ?>" title="View Projects">Current Excel</a>
+                                </li>
+                            </ul>
                         </li>
-                        
                         <?php endif; ?>
                     </ul>
                 </div>

@@ -104,3 +104,4 @@ $route['get_projects']['post'] = 'ProjectManagmentController/getProjects';
 // Excel Management
 $route['upload_excel']['get'] = 'ExcelManagmentController/index';
 $route['show_upload_excel']['post'] = 'ExcelManagmentController/showUploadExcel';
+$route['current_excel']['get'] = 'ExcelManagmentController/currentExcel';

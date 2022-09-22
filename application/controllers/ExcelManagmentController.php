@@ -19,8 +19,7 @@ class ExcelManagmentController extends MY_Controller
         if (!fileAllowed()) {
             redirect('upload_excel');
         }
-
-
+        
         $files = array_diff(scandir(UPLOAD_EXCEL_PATH), array('.', '..'));
 
         if (count($files)) {
@@ -70,7 +69,7 @@ class ExcelManagmentController extends MY_Controller
                 'project_id' => $this->input->post('project_id'),
                 'type_of_tag' => strtolower($data[1]),                          //Type Of Tag
                 'qr_and_bar_code_number' => strtolower($data[2]),               //QR and barcode number
-                'rfid_or_id' => $rfid_or_id,                           // RFID OR ID
+                'rfid_or_id' => $rfid_or_id,                                    // RFID OR ID
                 'status' => ACTIVE_STATUS,
                 'created_by' => $this->getLoggedInUser()->user_id,
                 'created_dt' => getCurrentTime(),
@@ -87,5 +86,13 @@ class ExcelManagmentController extends MY_Controller
         }
 
         $response = $this->ExcelManagmentModel->insertBatch('temp_excel', $insertData);
+    }
+
+    public function currentExcel()
+    {
+        $this->data['title'] = 'Current Excel';
+        $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
+        $this->load->view('web/includes/header', $this->data);
+        $this->load->view('web/excelmanagement/current_excel');
     }
 }
