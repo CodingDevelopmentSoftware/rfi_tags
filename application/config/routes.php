@@ -105,3 +105,4 @@ $route['get_projects']['post'] = 'ProjectManagmentController/getProjects';
 $route['upload_excel']['get'] = 'ExcelManagmentController/index';
 $route['save_upload_excel']['post'] = 'ExcelManagmentController/saveUploadExcel';
 $route['current_excel']['get'] = 'ExcelManagmentController/currentExcel';
+$route['remove_duplicate']['get'] = 'ExcelManagmentController/removeDuplicate';

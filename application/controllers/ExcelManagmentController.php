@@ -110,8 +110,23 @@ class ExcelManagmentController extends MY_Controller
         );
         $this->data['original_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 0]);
         $this->data['duplicate_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 1]);
-        $this->data['page_data'] = $this->ExcelManagmentModel->getByTableName('company_management');
+        $this->data['page_data'] = $this->ExcelManagmentModel->getByTableName('temp_excel');
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/excelmanagement/current_excel');
+        $this->load->view('web/includes/footer');
+    }
+    public function removeDuplicate(){
+        $response = $this->ExcelManagmentModel->deleteData('temp_excel', ['data_exist' => 1]);
+
+        if( $response == 1) {
+            $color = 'success';
+            $message = 'Duplicate Data Deleted Successfully';
+            $redirect = 'current_excel';  
+        } else {
+            $color = 'danger';
+            $message = 'Database Problem';
+            $redirect = 'currentExcel';
+        }
+        $this->redirectWithMessage($color, $message, $redirect);
     }
 }
