@@ -18,19 +18,29 @@
                             <th>Field</th><th>Value</th><th>Action</th>
                         </tr>
                         <tr>
-                            <td>Company Name</td><td><?= $project_data->company_name ?></td>
+                            <td>Company Name</td><td><?= isset($project_data->company_name) ? $project_data->company_name : 'N/A'; ?></td>
                             <td> 
-                                <a href="<?= base_url("view_company_profile/") . base64_encode($project_data->cid); ?>" onclick="return confirm('Are you sure you want to View the profile of <?= ucwords($project_data->company_name); ?> ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                <?php if(isset($project_data->company_name)): ?>
+                                    <a href="<?= base_url("view_company_profile/") . base64_encode($project_data->cid); ?>" onclick="return confirm('Are you sure you want to View the profile of <?= ucwords($project_data->company_name); ?> ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                <?php endif;?>    
                             </td>
                         </tr>
                         <tr>
-                            <td>Project Name</td><td><?= $project_data->project_name ?></td>
+                            <td>Project Name</td><td><?= isset($project_data->project_name) ? $project_data->project_name : 'N/A'; ?></td>
                             <td>
-                            <a href="<?= base_url("view_project_profile/") . base64_encode($project_data->pid); ?>" onclick="return confirm('Are you sure you want to View the <?= ucwords($project_data->project_name); ?> Project ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                            <?php if(isset($project_data->project_name)): ?>    
+                                 <a href="<?= base_url("view_project_profile/") . base64_encode($project_data->pid); ?>" onclick="return confirm('Are you sure you want to View the <?= ucwords($project_data->project_name); ?> Project ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                <?php endif;?>
                             </td>
                         </tr>
                         <tr>
-                            <td>Total Count</td><td><?= $total_count[0]->total_count ?></td><td></td>
+                            <td>Total Count</td>
+                            <td><?= $total_count[0]->total_count ?></td>
+                            <td>
+                                <?php if($total_count[0]->total_count): ?>
+                                <a href="<?= base_url("remove_all"); ?>" onclick="return confirm('Are you sure you want to delete all data ?')" class="btn btn-danger btn-xs" title="View Profile">Remove All</a>
+                                <?php endif; ?>    
+                            </td>
                         </tr>
                         <tr>
                             <td>Origianl Count</td><td><?= $original_count ?></td><td></td>
@@ -39,7 +49,7 @@
                             <td>Duplicate Count</td><td><?= $duplicate_count ?></td>
                             <td>
                                 <?php if($duplicate_count): ?>
-                                <a href="<?= base_url("remove_duplicate"); ?>" onclick="return confirm('Are you sure you want to delete duplicate data ?')" class="btn btn-danger btn-xs" title="View Profile">Remove</a>
+                                <a href="<?= base_url("remove_duplicate"); ?>" onclick="return confirm('Are you sure you want to delete duplicate data ?')" class="btn btn-danger btn-xs" title="View Profile">Remove Duplicate</a>
                                 <?php endif; ?>    
                             </td>
                         </tr>

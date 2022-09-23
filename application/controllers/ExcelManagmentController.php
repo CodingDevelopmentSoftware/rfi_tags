@@ -2,6 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class ExcelManagmentController extends MY_Controller
 {
+    private $tageLimitId = 1;
     public function __construct()
     {
         parent::__construct();
@@ -19,7 +20,7 @@ class ExcelManagmentController extends MY_Controller
         if (!fileAllowed()) {
             redirect('upload_excel');
         }
-        
+
         $files = array_diff(scandir(UPLOAD_EXCEL_PATH), array('.', '..'));
 
         if (count($files)) {
@@ -87,10 +88,10 @@ class ExcelManagmentController extends MY_Controller
 
         $response = $this->ExcelManagmentModel->insertBatch('temp_excel', $insertData);
 
-        if( $response == 1) {
+        if ($response == 1) {
             $color = 'success';
             $message = 'Excel Sheet Uploaded Successfully';
-            $redirect = 'current_excel';  
+            $redirect = 'current_excel';
         } else {
             $color = 'danger';
             $message = 'Excel Sheet Uploaded Successfully';
@@ -106,7 +107,7 @@ class ExcelManagmentController extends MY_Controller
         $this->data['total_count'] = $this->ExcelManagmentModel->getDataWithWhereIn(
             'COUNT(tid) as total_count',
             'temp_excel',
-            [1,0]
+            [1, 0]
         );
         $this->data['original_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 0]);
         $this->data['duplicate_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 1]);
@@ -115,18 +116,71 @@ class ExcelManagmentController extends MY_Controller
         $this->load->view('web/excelmanagement/current_excel');
         $this->load->view('web/includes/footer');
     }
-    public function removeDuplicate(){
+    public function removeDuplicate()
+    {
         $response = $this->ExcelManagmentModel->deleteData('temp_excel', ['data_exist' => 1]);
 
-        if( $response == 1) {
+        if ($response == 1) {
             $color = 'success';
             $message = 'Duplicate Data Deleted Successfully';
-            $redirect = 'current_excel';  
+            $redirect = 'current_excel';
         } else {
             $color = 'danger';
             $message = 'Database Problem';
             $redirect = 'currentExcel';
         }
         $this->redirectWithMessage($color, $message, $redirect);
+    }
+    public function removeAll()
+    {
+        $response = $this->ExcelManagmentModel->truncateTable('temp_excel');
+        if ($response == 1) {
+            $color = 'success';
+            $message = 'All Data Deleted Successfully';
+            $redirect = 'current_excel';
+        } else {
+            $color = 'danger';
+            $message = 'Database Problem';
+            $redirect = 'currentExcel';
+        }
+        $this->redirectWithMessage($color, $message, $redirect);
+    }
+
+    public function setLimit() {
+        $this->data['title'] = 'Tag Limit';
+        $this->data['page_data'] = $this->ExcelManagmentModel->getSingleRowWithWhere('total_limit', 'tag_limit', ['id' => $this->tageLimitId]);
+        $this->load->view('web/includes/header', $this->data);
+        $this->load->view('web/excelmanagement/set_limit');
+        $this->load->view('web/includes/footer');  
+    }
+    public function saveLimit()
+    {   
+        if (!postAllowed()) {
+            redirect('add_user');
+        }
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('tags_limit', 'Tag Limit', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->index();
+            return;
+        }
+
+        $updateData = [
+            'total_limit' => postDataFilterhtml($this->input->post('tags_limit')),
+            'modified_by' => $this->getLoggedInUser()->user_id,
+            'modified_at' => getCurrentTime(),
+        ];
+        $response = $this->UserManagmentModel->updateData('tag_limit', ['id' => $this->tageLimitId], $updateData);
+
+        if ($response > 0) {
+            $color = 'success';
+            $message = "New Limit Added Successfully";
+        } else {
+            $color = 'danger';
+            $message = "Database Problem";
+        }
+        $this->redirectWithMessage($color, $message, 'set_limit');
+
+
     }
 }

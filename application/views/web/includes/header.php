@@ -191,6 +191,11 @@
                                 <a href="<?= base_url('current_excel'); ?>" title="View Projects">Current Excel</a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                <a href="<?= base_url('set_limit'); ?>" title="View Projects">Set Limit</a>
+                                </li>
+                            </ul>
                         </li>
                         <?php endif; ?>
                     </ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2022 at 11:43 PM
+-- Generation Time: Sep 23, 2022 at 08:41 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -59,15 +59,6 @@ CREATE TABLE `loginactivity` (
   `platform` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `loginactivity`
---
-
-INSERT INTO `loginactivity` (`id`, `user_id`, `last_login`, `ip_address`, `login_agent`, `platform`) VALUES
-(1, 1, '2022-09-14 23:54:35', '::1', 'Chrome 105.0.0.0', 'Windows 10'),
-(2, 1, '2022-09-20 00:18:25', '::1', 'Chrome 105.0.0.0', 'Windows 10'),
-(3, 1, '2022-09-21 01:56:46', '::1', 'Chrome 105.0.0.0', 'Windows 10');
-
 -- --------------------------------------------------------
 
 --
@@ -91,6 +82,27 @@ CREATE TABLE `project_management` (
 
 INSERT INTO `project_management` (`pid`, `company_id`, `project_name`, `status`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
 (1, 1, 'Mc Tags', 1, 1, '2022-09-13 13:49:49', 1, '2022-09-14 01:47:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tag_limit`
+--
+
+CREATE TABLE `tag_limit` (
+  `id` int(11) NOT NULL,
+  `total_limit` int(11) NOT NULL,
+  `totel_scanned` int(11) NOT NULL DEFAULT 0,
+  `modified_by` int(11) NOT NULL,
+  `modified_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tag_limit`
+--
+
+INSERT INTO `tag_limit` (`id`, `total_limit`, `totel_scanned`, `modified_by`, `modified_at`) VALUES
+(1, 0, 0, 1, '2022-09-24 00:09:41');
 
 -- --------------------------------------------------------
 
@@ -166,6 +178,12 @@ ALTER TABLE `project_management`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `tag_limit`
+--
+ALTER TABLE `tag_limit`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `temp_excel`
 --
 ALTER TABLE `temp_excel`
@@ -193,13 +211,19 @@ ALTER TABLE `company_management`
 -- AUTO_INCREMENT for table `loginactivity`
 --
 ALTER TABLE `loginactivity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `project_management`
 --
 ALTER TABLE `project_management`
   MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tag_limit`
+--
+ALTER TABLE `tag_limit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `temp_excel`
