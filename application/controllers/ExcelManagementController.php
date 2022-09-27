@@ -71,7 +71,8 @@ class ExcelManagementController extends MY_Controller
                 'type_of_tag' => strtolower($data[1]),                          //Type Of Tag
                 'qr_and_bar_code_number' => strtolower($data[2]),               //QR and barcode number
                 'rfid_or_id' => $rfid_or_id,                                    // RFID OR ID
-                'status' => ACTIVE_STATUS,
+                'read_status' => NOT_READ_STATUS,
+                'status' = >ACTIVE_STATUS, 
                 'created_by' => $this->getLoggedInUser()->user_id,
                 'created_dt' => getCurrentTime(),
             ];

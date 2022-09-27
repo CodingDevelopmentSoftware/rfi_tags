@@ -112,4 +112,5 @@ $route['save_limit']['post'] = 'ExcelManagementController/saveLimit';
 
 // Scan Management
 $route['read_tags']['get'] = 'ScanManagementController/readTags';
+$route['save_reader_tag']['post'] = 'ScanManagementController/saveReaderTag';
 $route['scan_tags']['get'] = 'ScanManagementController/scanTags';
