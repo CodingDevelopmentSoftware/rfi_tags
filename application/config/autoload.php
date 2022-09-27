@@ -139,5 +139,6 @@ $autoload['model'] = [
     'Vehicle_admin',
     'CompanyManagementModel',
     'ProjectManagmentModel',
-    'ExcelManagmentModel'
+    'ExcelManagementModel',
+    'ScanManagementModel'
 ];

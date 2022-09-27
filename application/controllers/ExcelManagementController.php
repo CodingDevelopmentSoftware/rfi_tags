@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class ExcelManagmentController extends MY_Controller
+class ExcelManagementController extends MY_Controller
 {
     private $tageLimitId = 1;
     public function __construct()
@@ -46,7 +46,7 @@ class ExcelManagmentController extends MY_Controller
         }
 
         // check already exist data in table
-        $alreadyExistRfidOrID  = $this->ExcelManagmentModel->getDataWithWhereIn(
+        $alreadyExistRfidOrID  = $this->ExcelManagementModel->getDataWithWhereIn(
             'rfid_or_id',
             'temp_excel',
             $whereInArray
@@ -86,7 +86,7 @@ class ExcelManagmentController extends MY_Controller
             $insertData[] = $array;
         }
 
-        $response = $this->ExcelManagmentModel->insertBatch('temp_excel', $insertData);
+        $response = $this->ExcelManagementModel->insertBatch('temp_excel', $insertData);
 
         if ($response == 1) {
             $color = 'success';
@@ -103,22 +103,22 @@ class ExcelManagmentController extends MY_Controller
     public function currentExcel()
     {
         $this->data['title'] = 'Current Excel';
-        $this->data['project_data'] = $this->ExcelManagmentModel->getCurrentCompnayProjectName();
-        $this->data['total_count'] = $this->ExcelManagmentModel->getDataWithWhereIn(
+        $this->data['project_data'] = $this->ExcelManagementModel->getCurrentCompnayProjectName();
+        $this->data['total_count'] = $this->ExcelManagementModel->getDataWithWhereIn(
             'COUNT(tid) as total_count',
             'temp_excel',
             [1, 0]
         );
-        $this->data['original_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 0]);
-        $this->data['duplicate_count'] = $this->ExcelManagmentModel->getCount('temp_excel', ['data_exist' => 1]);
-        $this->data['page_data'] = $this->ExcelManagmentModel->getByTableName('temp_excel');
+        $this->data['original_count'] = $this->ExcelManagementModel->getCount('temp_excel', ['data_exist' => 0]);
+        $this->data['duplicate_count'] = $this->ExcelManagementModel->getCount('temp_excel', ['data_exist' => 1]);
+        $this->data['page_data'] = $this->ExcelManagementModel->getByTableName('temp_excel');
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/excelmanagement/current_excel');
         $this->load->view('web/includes/footer');
     }
     public function removeDuplicate()
     {
-        $response = $this->ExcelManagmentModel->deleteData('temp_excel', ['data_exist' => 1]);
+        $response = $this->ExcelManagementModel->deleteData('temp_excel', ['data_exist' => 1]);
 
         if ($response == 1) {
             $color = 'success';
@@ -133,7 +133,7 @@ class ExcelManagmentController extends MY_Controller
     }
     public function removeAll()
     {
-        $response = $this->ExcelManagmentModel->truncateTable('temp_excel');
+        $response = $this->ExcelManagementModel->truncateTable('temp_excel');
         if ($response == 1) {
             $color = 'success';
             $message = 'All Data Deleted Successfully';
@@ -146,15 +146,16 @@ class ExcelManagmentController extends MY_Controller
         $this->redirectWithMessage($color, $message, $redirect);
     }
 
-    public function setLimit() {
+    public function setLimit()
+    {
         $this->data['title'] = 'Tag Limit';
-        $this->data['page_data'] = $this->ExcelManagmentModel->getSingleRowWithWhere('total_limit', 'tag_limit', ['id' => $this->tageLimitId]);
+        $this->data['page_data'] = $this->ExcelManagementModel->getSingleRowWithWhere('total_limit', 'tag_limit', ['id' => $this->tageLimitId]);
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/excelmanagement/set_limit');
-        $this->load->view('web/includes/footer');  
+        $this->load->view('web/includes/footer');
     }
     public function saveLimit()
-    {   
+    {
         if (!postAllowed()) {
             redirect('add_user');
         }
@@ -180,7 +181,5 @@ class ExcelManagmentController extends MY_Controller
             $message = "Database Problem";
         }
         $this->redirectWithMessage($color, $message, 'set_limit');
-
-
     }
 }

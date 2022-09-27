@@ -197,7 +197,28 @@
                                 </li>
                             </ul>
                         </li>
-                        <?php endif; ?>
+                        <?php else: ?>
+                            <li>
+                            <a href="#">
+                                <span class="sidebar-item-icon fa-stack ">
+                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="sidebar-item-arrow fa arrow"></span>
+                                <span class="sidebar-item-title" title="Project Mangement">Scan Tags</span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?= base_url('read_tags'); ?>" title="Read Tags">Read Tags</a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                <a href="<?= base_url('scan_tags'); ?>" title="Scan Tags">Scan Tags</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <?php endif;?>    
                     </ul>
                 </div>
             </div>

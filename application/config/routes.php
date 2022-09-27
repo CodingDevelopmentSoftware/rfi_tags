@@ -102,11 +102,14 @@ $route['save_update_project']['post'] = 'ProjectManagmentController/saveUpdatePr
 $route['get_projects']['post'] = 'ProjectManagmentController/getProjects';
 
 // Excel Management
-$route['upload_excel']['get'] = 'ExcelManagmentController/index';
-$route['save_upload_excel']['post'] = 'ExcelManagmentController/saveUploadExcel';
-$route['current_excel']['get'] = 'ExcelManagmentController/currentExcel';
-$route['remove_duplicate']['get'] = 'ExcelManagmentController/removeDuplicate';
-$route['remove_all']['get'] = 'ExcelManagmentController/removeAll';
-$route['set_limit']['get'] = 'ExcelManagmentController/setLimit';
-$route['save_limit']['post'] = 'ExcelManagmentController/saveLimit';
+$route['upload_excel']['get'] = 'ExcelManagementController/index';
+$route['save_upload_excel']['post'] = 'ExcelManagementController/saveUploadExcel';
+$route['current_excel']['get'] = 'ExcelManagementController/currentExcel';
+$route['remove_duplicate']['get'] = 'ExcelManagementController/removeDuplicate';
+$route['remove_all']['get'] = 'ExcelManagementController/removeAll';
+$route['set_limit']['get'] = 'ExcelManagementController/setLimit';
+$route['save_limit']['post'] = 'ExcelManagementController/saveLimit';
 
+// Scan Management
+$route['read_tags']['get'] = 'ScanManagementController/readTags';
+$route['scan_tags']['get'] = 'ScanManagementController/scanTags';
