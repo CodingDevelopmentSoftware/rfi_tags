@@ -154,7 +154,7 @@
                                     <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title" title="Project Mangement">Project Mangement</span>
+                                <span class="sidebar-item-title" title="Project Management">Project Management</span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -174,30 +174,30 @@
                                     <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title" title="Project Mangement">Excel Mangement</span>
+                                <span class="sidebar-item-title" title="Excel Management">Excel Mangement</span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a download href="<?= EXCEL_PATH ?>" title="Add Project">Download Sample</a>
+                                    <a download href="<?= EXCEL_PATH ?>" title="Download Sample">Download Sample</a>
                                 </li>
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= base_url('upload_excel'); ?>" title="Add Project">Upload Excel</a>
+                                    <a href="<?= base_url('upload_excel'); ?>" title="Upload Excel">Upload Excel</a>
                                 </li>
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                <a href="<?= base_url('current_excel'); ?>" title="View Projects">Current Excel</a>
+                                <a href="<?= base_url('current_excel'); ?>" title="Current Excel">Current Excel</a>
                                 </li>
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                <a href="<?= base_url('set_limit'); ?>" title="View Projects">Set Limit</a>
+                                <a href="<?= base_url('set_limit'); ?>" title="Set Limit">Set Limit</a>
                                 </li>
                             </ul>
                         </li>
-                        <?php else: ?>
+                        <?php elseif(isset($check_excle) && $check_excle > 0): ?>
                             <li>
                             <a href="#">
                                 <span class="sidebar-item-icon fa-stack ">
@@ -205,7 +205,7 @@
                                     <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                 </span>
                                 <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title" title="Project Mangement">Scan Tags</span>
+                                <span class="sidebar-item-title" title="Scan Tags">Scan Tags</span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -214,11 +214,11 @@
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                <a href="<?= base_url('scan_tags'); ?>" title="Scan Tags">Scan Tags</a>
+                                <a href="<?= base_url('scan_tags'); ?>" title="Scan Tags">Scan QR Tags</a>
                                 </li>
                             </ul>
                         </li>
-                        <?php endif;?>    
+                        <?php endif;?>
                     </ul>
                 </div>
             </div>

@@ -72,9 +72,9 @@ class ExcelManagementController extends MY_Controller
                 'qr_and_bar_code_number' => strtolower($data[2]),               //QR and barcode number
                 'rfid_or_id' => $rfid_or_id,                                    // RFID OR ID
                 'read_status' => NOT_READ_STATUS,
-                'status' = >ACTIVE_STATUS, 
+                'status' => ACTIVE_STATUS, 
                 'created_by' => $this->getLoggedInUser()->user_id,
-                'created_dt' => getCurrentTime(),
+                'created_dt' => getCurrentTime()
             ];
             if (
                 !in_array($rfid_or_id, $checkRefIdOrIdExistiNCurrectFile) &&

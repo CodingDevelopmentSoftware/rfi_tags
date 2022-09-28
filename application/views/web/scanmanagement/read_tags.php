@@ -12,12 +12,13 @@
                 <?php $this->load->view('web/includes/message'); ?>
                     <div class="row">
                         <div class="col-lg-12">
+                            <form action="javascript:void(0)">
                             <div class="form-group">
                                 <label>Enter Tag</label>
                                     <input type="text" name="tag" class="form-control" placeholder="Enter Tag" required maxlength="40" id="read-tag-input" autofocus="true">
                                 </div>
-                                <button type="button" class="btn btn-success" id="add">Add</button>
-                                <button type="button" class="btn btn-info" id="clear">Clear</button>
+                                <button type="reset" class="btn btn-info" id="clear">Clear</button>
+                            </form>
                         </div>
 
                     </div>
@@ -37,14 +38,31 @@
     let tagRead = document.querySelector('#read-tag-input');
     tagRead.addEventListener('change',function(e){
         e.preventDefault();
-        $.ajax({
-            url : '<?= base_url('/save_reader_tag')?>',
-            method : 'POST',
-            data : {tage : e.target.value},
-            success : function(response){
-                console.log(response);
-                e.target.value = '';
-            }
-        })
-    })
+        if(e.target.value.length > 8) {
+            $.ajax({
+                url : '<?= base_url('/save_reader_tag')?>',
+                method : 'POST',
+                data : {tag : e.target.value},
+                success : function(response){
+                    if(response.status == false ){
+                        alert(response.message);
+                    } else {
+                        $('#java-script-error').css({'display':'block'});
+                        $('#java-script-error-color').addClass('alert-'+response.color);
+                        $('#java-script-error-message').text(response.message);
+
+                        setTimeout(function(){
+                            $('#java-script-error').css({'display':'none'});
+                            $('#java-script-error-color').removeClass('alert-'+response.color);
+                            $('#java-script-error-message').text(''); 
+                        },3000);
+                    }
+                    e.target.value = '';
+                },
+                error(err){
+                    console.log(err);
+                }
+            })
+        }
+    });
 </script>

@@ -14,3 +14,13 @@
                  <?php endif; ?>
          </div>
  <?php endif; ?>
+ <style>
+#java-script-error {
+        display: none;
+}
+ </style>
+ <div id="java-script-error">
+        <div class="alert" role="alert" id="java-script-error-color">
+                <span id="java-script-error-message"></span>
+        </div>
+ </div>
