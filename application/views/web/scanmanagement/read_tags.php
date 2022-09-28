@@ -14,6 +14,10 @@
                         <div class="col-lg-12">
                             <form action="javascript:void(0)">
                             <div class="form-group">
+                                <label>Total Count</label>
+                                <div class="form-control" id="totalCount"><?= $totalCount; ?></div>
+                            </div>    
+                            <div class="form-group">
                                 <label>Enter Tag</label>
                                     <input type="text" name="tag" class="form-control" placeholder="Enter Tag" required maxlength="40" id="read-tag-input" autofocus="true">
                                 </div>
@@ -50,6 +54,7 @@
                         $('#java-script-error').css({'display':'block'});
                         $('#java-script-error-color').addClass('alert-'+response.color);
                         $('#java-script-error-message').text(response.message);
+                        $('#totalCount').text(response.totalCount);
 
                         setTimeout(function(){
                             $('#java-script-error').css({'display':'none'});
