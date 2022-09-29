@@ -209,12 +209,12 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?= base_url('read_tags'); ?>" title="Read Tags">Read Tags</a>
+                                    <a href="<?= base_url('read_rfid_tags'); ?>" title="Read Tags">Read Tags</a>
                                 </li>
                             </ul>
                             <ul class="nav nav-second-level">
                                 <li>
-                                <a href="<?= base_url('scan_tags'); ?>" title="Scan Tags">Scan QR Tags</a>
+                                <a href="<?= base_url('scan_qr_tags'); ?>" title="Scan QR Tags">Scan QR Tags</a>
                                 </li>
                             </ul>
                         </li>

@@ -10,18 +10,18 @@ class ScanManagementController extends MY_Controller
     public function index()
     {
     }
-    public function readTags()
+    public function readRfidTags()
     {
-        $this->data['title'] = 'Read Tags';
+        $this->data['title'] = 'Read RFID Tags';
         
         $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel',[
             'rfid_read_by' => $this->getLoggedInUser()->user_id,
             'rfid_read_status' => YES_READ_STATUS
         ]);
         $this->load->view('web/includes/header', $this->data);
-        $this->load->view('web/scanmanagement/read_tags');
+        $this->load->view('web/scanmanagement/read_rfid_tags');
     }
-    public function saveReaderTag()
+    public function saveRfidReaderTag()
     {
         $totalCount = 0;
         $tag = $this->input->post('tag');
@@ -77,8 +77,71 @@ class ScanManagementController extends MY_Controller
         header('Content-Type: application/json');
         echo json_encode(['status' => $status, 'color' => $color, 'message' => $message, 'totalCount' => $totalCount]);
     }
-    public function scanTags()
+    public function scanQrTags()
     {
-        echo "scanTags";
+        $this->data['title'] = 'Scan QR Tags';
+        
+        $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel',[
+            'qr_read_by' => $this->getLoggedInUser()->user_id,
+            'qr_read_status' => YES_READ_STATUS
+        ]);
+        $this->load->view('web/includes/header', $this->data);
+        $this->load->view('web/scanmanagement/scan_qr_tags');
+    }
+    public function saveQrReaderTag()
+    {
+        $totalCount = 0;
+        $tag = $this->input->post('tag');
+        $whereData = [
+            'qr_and_bar_code_number' => $tag
+        ];
+
+        $response = $this->ScanManagementModel->getDataByWhereByOrderBy(
+            'qr_read_status',
+            'temp_excel', 
+            $whereData,
+            'tid',
+            'ASC'
+        )[0];
+
+        if (empty($response)) {
+            $color = 'danger';
+            $message = "QR Tag does not exist";
+            $status = false;
+        } else {
+            if ($response->qr_read_status == 1) {
+                $color = 'warning';
+                $message = "$tag QR Tag Already Read";
+                $status = false;
+            } else {
+                $responseStatus = $this->UserManagmentModel->updateData(
+                    'temp_excel',
+                    $whereData,
+                    [
+                        'qr_read_status' =>  YES_READ_STATUS,
+                        'qr_read_by' => $this->getLoggedInUser()->user_id,
+                        'qr_read_dt' => getCurrentTime(),    
+                    ]
+                );
+                if ($responseStatus == 1) {
+                    $color = 'success';
+                    $message = "$tag QR Tag read successfully";
+                    $status = true;
+                    $totalCount = $this->ScanManagementModel->getCount('temp_excel',
+                        [
+                            'qr_read_by' => $this->getLoggedInUser()->user_id,
+                            'qr_read_status' => YES_READ_STATUS
+                        ]
+                    );
+                } else {
+                    $color = 'danger';
+                    $message = "Database Problem";
+                    $status = false;
+                }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode(['status' => $status, 'color' => $color, 'message' => $message, 'totalCount' => $totalCount]);
     }
 }

@@ -111,6 +111,7 @@ $route['set_limit']['get'] = 'ExcelManagementController/setLimit';
 $route['save_limit']['post'] = 'ExcelManagementController/saveLimit';
 
 // Scan Management
-$route['read_tags']['get'] = 'ScanManagementController/readTags';
-$route['save_reader_tag']['post'] = 'ScanManagementController/saveReaderTag';
-$route['scan_tags']['get'] = 'ScanManagementController/scanTags';
+$route['read_rfid_tags']['get'] = 'ScanManagementController/readRfidTags';
+$route['save_rfid_reader_tag']['post'] = 'ScanManagementController/saveRfidReaderTag';
+$route['scan_qr_tags']['get'] = 'ScanManagementController/scanQrTags';
+$route['save_qr_reader_tag']['post'] = 'ScanManagementController/saveQrReaderTag';

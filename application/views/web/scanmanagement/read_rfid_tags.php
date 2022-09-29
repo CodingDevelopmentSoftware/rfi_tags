@@ -44,7 +44,7 @@
         e.preventDefault();
         if(e.target.value.length > 8) {
             $.ajax({
-                url : '<?= base_url('/save_reader_tag')?>',
+                url : '<?= base_url('/save_rfid_reader_tag')?>',
                 method : 'POST',
                 data : {tag : e.target.value},
                 success : function(response){
