@@ -14,7 +14,10 @@ class ScanManagementController extends MY_Controller
     {
         $this->data['title'] = 'Read Tags';
         
-        $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel',['modified_by' => $this->getLoggedInUser()->user_id]);
+        $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel',[
+            'rfid_read_by' => $this->getLoggedInUser()->user_id,
+            'rfid_read_status' => YES_READ_STATUS
+        ]);
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/scanmanagement/read_tags');
     }
@@ -26,36 +29,43 @@ class ScanManagementController extends MY_Controller
             'rfid_or_id ' => $tag
         ];
 
-        $response = $this->ScanManagementModel->getCount('temp_excel', $whereData);
-        if ($response != 1) {
+        $response = $this->ScanManagementModel->getDataByWhereByOrderBy(
+            'rfid_read_status',
+            'temp_excel', 
+            $whereData,
+            'tid',
+            'ASC'
+        )[0];
+
+        if (empty($response)) {
             $color = 'danger';
-            $message = "Tag does not exist";
+            $message = "RFID Tag does not exist";
             $status = false;
         } else {
-            $whereData = [
-                'rfid_or_id ' => $tag,
-                'read_status' => NOT_READ_STATUS
-            ];
-            $response = $this->ScanManagementModel->getCount('temp_excel', $whereData);
-            if ($response !== 1) {
+            if ($response->rfid_read_status == 1) {
                 $color = 'warning';
-                $message = "$tag tag Already Read";
+                $message = "$tag RFID Tag Already Read";
                 $status = false;
             } else {
-                $response = $this->UserManagmentModel->updateData(
+                $responseStatus = $this->UserManagmentModel->updateData(
                     'temp_excel',
                     $whereData,
                     [
-                        'read_status' =>  YES_READ_STATUS,
-                        'modified_by' => $this->getLoggedInUser()->user_id,
-                        'modified_dt' => getCurrentTime(),    
+                        'rfid_read_status' =>  YES_READ_STATUS,
+                        'rfid_read_by' => $this->getLoggedInUser()->user_id,
+                        'rfid_read_dt' => getCurrentTime(),    
                     ]
                 );
-                if ($response == 1) {
+                if ($responseStatus == 1) {
                     $color = 'success';
-                    $message = "$tag tag read successfully";
+                    $message = "$tag RFID Tag read successfully";
                     $status = true;
-                    $totalCount = $this->ScanManagementModel->getCount('temp_excel',['modified_by' => $this->getLoggedInUser()->user_id]);
+                    $totalCount = $this->ScanManagementModel->getCount('temp_excel',
+                        [
+                            'rfid_read_by' => $this->getLoggedInUser()->user_id,
+                            'rfid_read_status' => YES_READ_STATUS
+                        ]
+                    );
                 } else {
                     $color = 'danger';
                     $message = "Database Problem";
