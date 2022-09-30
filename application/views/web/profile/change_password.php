@@ -1,6 +1,13 @@
 <div id="page-wrapper">
     <div class="row">
-     <div class="col-lg-2"></div>
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
+                <li><a href="<?= base_url('my_profile') ?>">My Profile</a></li>
+                <li>Change Password</li>
+            </ol>
+        </div>
+        <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -10,12 +17,12 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                    <?php $this->load->view('web/includes/message'); ?>
+                        <?php $this->load->view('web/includes/message'); ?>
                         <div class="col-lg-12">
                             <form role="form" method="post" onsubmit="return confirm('Are you sure you want to change password ?');" action="<?= base_url('save_password') ?>">
                                 <div class="form-group">
                                     <label>Old Password </label>
-                                    <input type="password" name="old_password"  id="old_password" class="form-control" placeholder="Enter Old Password " required maxlength="40">
+                                    <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Enter Old Password " required maxlength="40">
                                 </div>
                                 <div class="form-group">
                                     <label>New Password </label>

@@ -1,5 +1,12 @@
 <div id="page-wrapper">
     <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
+                <li><a href="<?= base_url('my_profile') ?>">My Profile</a></li>
+                <li>Update Profile</li>
+            </ol>
+        </div>
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <div class="panel panel-default">
@@ -10,7 +17,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                    <?php $this->load->view('web/includes/message'); ?>
+                        <?php $this->load->view('web/includes/message'); ?>
                         <div class="col-lg-12">
                             <form role="form" method="post" onsubmit="return confirm('Are you sure you want to Update your profile ?');" action="<?= base_url('saveprofile') ?>">
                                 <div class="form-group">

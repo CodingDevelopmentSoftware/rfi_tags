@@ -13,8 +13,8 @@ class ScanManagementController extends MY_Controller
     public function readRfidTags()
     {
         $this->data['title'] = 'Read RFID Tags';
-        
-        $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel',[
+
+        $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel', [
             'rfid_read_by' => $this->getLoggedInUser()->user_id,
             'rfid_read_status' => YES_READ_STATUS
         ]);
@@ -31,18 +31,18 @@ class ScanManagementController extends MY_Controller
 
         $response = $this->ScanManagementModel->getDataByWhereByOrderBy(
             'rfid_read_status',
-            'temp_excel', 
+            'temp_excel',
             $whereData,
             'tid',
             'ASC'
-        )[0];
+        );
 
         if (empty($response)) {
             $color = 'danger';
             $message = "RFID Tag does not exist";
             $status = false;
         } else {
-            if ($response->rfid_read_status == 1) {
+            if ($response[0]->rfid_read_status == 1) {
                 $color = 'warning';
                 $message = "$tag RFID Tag Already Read";
                 $status = false;
@@ -53,14 +53,15 @@ class ScanManagementController extends MY_Controller
                     [
                         'rfid_read_status' =>  YES_READ_STATUS,
                         'rfid_read_by' => $this->getLoggedInUser()->user_id,
-                        'rfid_read_dt' => getCurrentTime(),    
+                        'rfid_read_dt' => getCurrentTime(),
                     ]
                 );
                 if ($responseStatus == 1) {
                     $color = 'success';
                     $message = "$tag RFID Tag read successfully";
                     $status = true;
-                    $totalCount = $this->ScanManagementModel->getCount('temp_excel',
+                    $totalCount = $this->ScanManagementModel->getCount(
+                        'temp_excel',
                         [
                             'rfid_read_by' => $this->getLoggedInUser()->user_id,
                             'rfid_read_status' => YES_READ_STATUS
@@ -80,8 +81,8 @@ class ScanManagementController extends MY_Controller
     public function scanQrTags()
     {
         $this->data['title'] = 'Scan QR Tags';
-        
-        $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel',[
+
+        $this->data['totalCount'] = $this->ScanManagementModel->getCount('temp_excel', [
             'qr_read_by' => $this->getLoggedInUser()->user_id,
             'qr_read_status' => YES_READ_STATUS
         ]);
@@ -97,21 +98,25 @@ class ScanManagementController extends MY_Controller
         ];
 
         $response = $this->ScanManagementModel->getDataByWhereByOrderBy(
-            'qr_read_status',
-            'temp_excel', 
+            'qr_read_status, generated_qr, qr_and_bar_code_number ',
+            'temp_excel',
             $whereData,
             'tid',
             'ASC'
-        )[0];
-
+        );
+        
         if (empty($response)) {
             $color = 'danger';
             $message = "QR Tag does not exist";
             $status = false;
         } else {
-            if ($response->qr_read_status == 1) {
+            if ($response[0]->qr_read_status == 1) {
                 $color = 'warning';
                 $message = "$tag QR Tag Already Read";
+                $status = false;
+            } else if ($response[0]->generated_qr !== $response[0]->qr_and_bar_code_number) {
+                $color = 'warning';
+                $message = "$tag QR Tag does not matched with RFID Tag";
                 $status = false;
             } else {
                 $responseStatus = $this->UserManagmentModel->updateData(
@@ -120,14 +125,15 @@ class ScanManagementController extends MY_Controller
                     [
                         'qr_read_status' =>  YES_READ_STATUS,
                         'qr_read_by' => $this->getLoggedInUser()->user_id,
-                        'qr_read_dt' => getCurrentTime(),    
+                        'qr_read_dt' => getCurrentTime(),
                     ]
                 );
                 if ($responseStatus == 1) {
                     $color = 'success';
                     $message = "$tag QR Tag read successfully";
                     $status = true;
-                    $totalCount = $this->ScanManagementModel->getCount('temp_excel',
+                    $totalCount = $this->ScanManagementModel->getCount(
+                        'temp_excel',
                         [
                             'qr_read_by' => $this->getLoggedInUser()->user_id,
                             'qr_read_status' => YES_READ_STATUS

@@ -71,6 +71,7 @@ class ExcelManagementController extends MY_Controller
                 'type_of_tag' => strtolower($data[1]),                          //Type Of Tag
                 'qr_and_bar_code_number' => strtolower($data[2]),               //QR and barcode number
                 'rfid_or_id' => $rfid_or_id,                                    // RFID OR ID
+                'generated_qr' => substr($rfid_or_id, -12),
                 'rfid_read_status' => NOT_READ_STATUS,
                 'qr_read_status' => NOT_READ_STATUS,
                 'status' => ACTIVE_STATUS, 

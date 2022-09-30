@@ -1,5 +1,12 @@
 <div id="page-wrapper">
     <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
+                <li>User Management</a></li>
+                <li>Add User</li>
+            </ol>
+        </div>
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <div class="panel panel-default">
@@ -9,7 +16,7 @@
                     </h4>
                 </div>
                 <div class="panel-body">
-                <?php $this->load->view('web/includes/message'); ?>
+                    <?php $this->load->view('web/includes/message'); ?>
                     <div class="row">
                         <div class="col-lg-12">
                             <form role="form" method="post" onsubmit="return confirm('Are you sure you want to Add User ?');" action="<?= base_url('save_user'); ?>">
