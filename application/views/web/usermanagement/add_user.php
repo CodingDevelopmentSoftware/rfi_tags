@@ -3,7 +3,6 @@
         <div class="col-lg-12">
             <ol class="breadcrumb text-sm text-right">
                 <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
-                <li>User Management</a></li>
                 <li>Add User</li>
             </ol>
         </div>

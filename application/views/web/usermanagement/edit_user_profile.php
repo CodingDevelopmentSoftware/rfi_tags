@@ -1,5 +1,12 @@
 <div id="page-wrapper">
     <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
+                <li><a href="<?= base_url('view_users') ?>">View Users</a></li>
+                <li>Edit User</li>
+            </ol>
+        </div>
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <div class="panel panel-default">

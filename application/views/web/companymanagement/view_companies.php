@@ -2,6 +2,10 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
+                <li>View Companies</li>
+            </ol>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="margin-none">
