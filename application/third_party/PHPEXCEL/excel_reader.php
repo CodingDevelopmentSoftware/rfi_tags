@@ -256,7 +256,8 @@ class PhpExcelReader {
             // check error code
             if($this->_ole->error == 1) {
             // bad file
-                die('The filename ' . $sFileName . ' is not readable');
+                // die('The filename ' . $sFileName . ' is not readable');
+                return false;
             }
             // check other error codes here (eg bad fileformat, etc...)
         }
@@ -445,13 +446,15 @@ class PhpExcelReader {
                             $isdate = FALSE;
                             if ($indexCode > 0){
                                 if (isset($this->formatRecords[$indexCode]))
+                                 {
                                     $formatstr = $this->formatRecords[$indexCode];
-                                if ($formatstr)
-                                if (preg_match("/[^hmsday\/\-:\s]/i", $formatstr) == 0) { // found day and time format
-                                    $isdate = TRUE;
-                                    $formatstr = str_replace('mm', 'i', $formatstr);
-                                    $formatstr = str_replace('h', 'H', $formatstr);
-                                }
+                                    if ($formatstr)
+                                    if (preg_match("/[^hmsday\/\-:\s]/i", $formatstr) == 0) { // found day and time format
+                                        $isdate = TRUE;
+                                        $formatstr = str_replace('mm', 'i', $formatstr);
+                                        $formatstr = str_replace('h', 'H', $formatstr);
+                                    }
+                                 }
                             }
 
                             if ($isdate){

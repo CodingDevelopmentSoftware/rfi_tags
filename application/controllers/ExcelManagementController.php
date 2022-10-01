@@ -35,72 +35,77 @@ class ExcelManagementController extends MY_Controller
             $this->redirectWithMessage('danger', 'File Not Uploaded', 'upload_excel');
         }
 
-        require(TPPATH . 'PHPEXCEL/excel_reader.php');
-
         // reading Excel File
-        $excel = new PhpExcelReader;
-        $excel->read(FETCH_EXCEL_PATH . $response);
-
-        foreach ($excel->sheets[0]['cells'] as $data) {
-            $whereInArray[] = $data[3];     // RFID OR ID Number
-        }
-
-        // check already exist data in table
-        $alreadyExistRfidOrID  = $this->ExcelManagementModel->getDataWithWhereIn(
-            'rfid_or_id',
-            'temp_excel',
-            $whereInArray
-        );
-
-        $checkRefIdOrIdExistiNDataBase = array_column($alreadyExistRfidOrID, 'rfid_or_id');
-
-        $insertData = [];
-        $count = 0;
-        foreach ($excel->sheets[0]['cells'] as $data) {
-            if ($count == 0) {
-                ++$count; // setting this variable to stop skipping next value and incerment also
-                continue;
+        try{
+            require(TPPATH . 'PHPEXCEL/excel_reader.php');
+            $excel = new PhpExcelReader;
+            if($excel->read(FETCH_EXCEL_PATH . $response) === false){
+                throw new Exception("Please provide valid excel format example '.xls' format OR please check data types of your columns");
             }
-
-            $rfid_or_id = strtolower($data[3]);
-            $checkRefIdOrIdExistiNCurrectFile = array_column($insertData, 'rfid_or_id');
-
-            $array = [
-                'company_id' => $this->input->post('company_id'),
-                'project_id' => $this->input->post('project_id'),
-                'type_of_tag' => strtolower($data[1]),                          //Type Of Tag
-                'qr_and_bar_code_number' => strtolower($data[2]),               //QR and barcode number
-                'rfid_or_id' => $rfid_or_id,                                    // RFID OR ID
-                'generated_qr' => substr($rfid_or_id, -12),
-                'rfid_read_status' => NOT_READ_STATUS,
-                'qr_read_status' => NOT_READ_STATUS,
-                'status' => ACTIVE_STATUS, 
-                'created_by' => $this->getLoggedInUser()->user_id,
-                'created_dt' => getCurrentTime()
-            ];
-            if (
-                !in_array($rfid_or_id, $checkRefIdOrIdExistiNCurrectFile) &&
-                !in_array($rfid_or_id, $checkRefIdOrIdExistiNDataBase)
-            ) {
-                $array['data_exist'] = NOT_EXIST;
+            foreach ($excel->sheets[0]['cells'] as $data) {
+                $whereInArray[] = $data[3];     // RFID OR ID Number
+            }
+    
+            // check already exist data in table
+            $alreadyExistRfidOrID  = $this->ExcelManagementModel->getDataWithWhereIn(
+                'rfid_or_id',
+                'temp_excel',
+                $whereInArray
+            );
+    
+            $checkRefIdOrIdExistiNDataBase = array_column($alreadyExistRfidOrID, 'rfid_or_id');
+    
+            $insertData = [];
+            $count = 0;
+            foreach ($excel->sheets[0]['cells'] as $data) {
+                if ($count == 0) {
+                    ++$count; // setting this variable to stop skipping next value and incerment also
+                    continue;
+                }
+    
+                $rfid_or_id = strtolower($data[3]);
+                $checkRefIdOrIdExistiNCurrectFile = array_column($insertData, 'rfid_or_id');
+    
+                $array = [
+                    'company_id' => $this->input->post('company_id'),
+                    'project_id' => $this->input->post('project_id'),
+                    'type_of_tag' => strtolower($data[1]),                          //Type Of Tag
+                    'qr_and_bar_code_number' => strtolower($data[2]),               //QR and barcode number
+                    'rfid_or_id' => $rfid_or_id,                                    // RFID OR ID
+                    'generated_qr' => substr($rfid_or_id, -12),
+                    'rfid_read_status' => NOT_READ_STATUS,
+                    'qr_read_status' => NOT_READ_STATUS,
+                    'status' => ACTIVE_STATUS, 
+                    'created_by' => $this->getLoggedInUser()->user_id,
+                    'created_dt' => getCurrentTime()
+                ];
+                if (
+                    !in_array($rfid_or_id, $checkRefIdOrIdExistiNCurrectFile) &&
+                    !in_array($rfid_or_id, $checkRefIdOrIdExistiNDataBase)
+                ) {
+                    $array['data_exist'] = NOT_EXIST;
+                } else {
+                    $array['data_exist'] = ALREADY_EXIST;
+                }
+                $insertData[] = $array;
+            }
+    
+            $response = $this->ExcelManagementModel->insertBatch('temp_excel', $insertData);
+    
+            if ($response == 1) {
+                $color = 'success';
+                $message = 'Excel Sheet Uploaded Successfully';
+                $redirect = 'current_excel';
             } else {
-                $array['data_exist'] = ALREADY_EXIST;
+                $color = 'danger';
+                $message = 'Excel Sheet Uploaded Successfully';
+                $redirect = 'upload_excel';
             }
-            $insertData[] = $array;
-        }
+            $this->redirectWithMessage($color, $message, $redirect);
 
-        $response = $this->ExcelManagementModel->insertBatch('temp_excel', $insertData);
-
-        if ($response == 1) {
-            $color = 'success';
-            $message = 'Excel Sheet Uploaded Successfully';
-            $redirect = 'current_excel';
-        } else {
-            $color = 'danger';
-            $message = 'Excel Sheet Uploaded Successfully';
-            $redirect = 'upload_excel';
-        }
-        $this->redirectWithMessage($color, $message, $redirect);
+        } catch(Exception $e){
+            $this->redirectWithMessage('danger', $e->getMessage(), 'upload_excel');
+        }    
     }
 
     public function currentExcel()
