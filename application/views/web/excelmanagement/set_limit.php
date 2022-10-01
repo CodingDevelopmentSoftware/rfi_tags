@@ -1,5 +1,11 @@
 <div id="page-wrapper">
     <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('view_projects') ?>">Home</a></li>
+                <li>Set Limit</li>
+            </ol>
+        </div>
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <div class="panel panel-default">

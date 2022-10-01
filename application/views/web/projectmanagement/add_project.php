@@ -1,5 +1,11 @@
 <div id="page-wrapper">
     <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
+                <li>Add Project</li>
+            </ol>
+        </div>
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <div class="panel panel-default">
@@ -17,9 +23,9 @@
                                     <label>Company Name</label>
                                     <select class="form-control" name="company_id" required>
                                         <option value="">Select Company </option>
-                                        <?php foreach($page_data as $data):?>
-                                            <option value="<?= $data->cid?>"><?= ucwords($data->company_name); ?></option>
-                                        <?php endforeach;?>    
+                                        <?php foreach ($page_data as $data) : ?>
+                                            <option value="<?= $data->cid ?>"><?= ucwords($data->company_name); ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="form-group">

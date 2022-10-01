@@ -1,8 +1,15 @@
 <div id="page-wrapper">
-
     <!-- /.row -->
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('view_projects') ?>">Home</a></li>
+                <li><a href="<?= base_url('view_projects') ?>">View Projects</a></li>
+                <li>View Project</li>
+            </ol>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
 
@@ -36,11 +43,11 @@
                             </tr>
                             <tr>
                                 <td>Modified By </td>
-                                <td><b><?= !empty($page_data->modified_by) ? $page_data->modified_by : 'N/A' ; ?></b></td>
+                                <td><b><?= !empty($page_data->modified_by) ? $page_data->modified_by : 'N/A'; ?></b></td>
                             </tr>
                             <tr>
                                 <td>Modified Date </td>
-                                <td><b><?= !empty($page_data->modified_by) ?  getFormatedDate($page_data->modified_by) : 'N/A' ?></b></td>
+                                <td><b><?= !empty($page_data->modified_dt) ?  getFormatedDate($page_data->modified_dt) : 'N/A' ?></b></td>
                             </tr>
                             <tr>
                                 <td colspan="2"><button onclick="goBack()" class="btn btn-success btn-md" title="Go Back to Previous Page">Go Back</button></td>

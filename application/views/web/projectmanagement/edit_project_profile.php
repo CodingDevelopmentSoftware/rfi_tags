@@ -1,5 +1,12 @@
 <div id="page-wrapper">
     <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb text-sm text-right">
+                <li><a href="<?= base_url('view_projects') ?>">Home</a></li>
+                <li><a href="<?= base_url('view_projects') ?>">View Projects</a></li>
+                <li>View Project</li>
+            </ol>
+        </div>
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <div class="panel panel-default">
@@ -13,14 +20,14 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <form role="form" method="post" onsubmit="return confirm('Are you sure you want to Update Project ?');" action="<?= base_url('save_update_project'); ?>">
-                            <input type="hidden" name="project_id" value="<?= $page_data_database->pid; ?>">
+                                <input type="hidden" name="project_id" value="<?= $page_data_database->pid; ?>">
                                 <div class="form-group">
                                     <label>Company Name</label>
                                     <select class="form-control" name="company_id" required>
                                         <option value="">Select Company </option>
-                                        <?php foreach($page_data as $data):?>
-                                            <option value="<?= $data->cid?>" <?= $data->cid == $page_data_database->company_id ? 'SELECTED' : '' ?>> <?= ucwords($data->company_name); ?></option>
-                                        <?php endforeach;?>    
+                                        <?php foreach ($page_data as $data) : ?>
+                                            <option value="<?= $data->cid ?>" <?= $data->cid == $page_data_database->company_id ? 'SELECTED' : '' ?>> <?= ucwords($data->company_name); ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
