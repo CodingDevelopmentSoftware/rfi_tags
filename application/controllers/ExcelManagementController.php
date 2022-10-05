@@ -58,7 +58,7 @@ class ExcelManagementController extends MY_Controller
             $insertData = [];
             $count = 0;
             foreach ($excel->sheets[0]['cells'] as $data) {
-                if ($count == 0) {
+                if ($count == 0) {      // skipping first value of the excel
                     ++$count; // setting this variable to stop skipping next value and incerment also
                     continue;
                 }

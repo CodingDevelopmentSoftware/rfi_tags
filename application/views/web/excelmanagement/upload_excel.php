@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="upload_excel">Upload Excel</label>
-                                    <input type="file" name="upload_excel" id="upload_excel" class="form-control" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                    <input type="file" name="upload_excel" id="upload_excel" class="form-control" accept="application/vnd.ms-excel" />
                                 </div>
                                 <button type="submit" class="btn btn-success" name="add">Upload</button>
                                 <button type="reset" class="btn btn-info">Clear</button>
