@@ -16,7 +16,6 @@ class CompanyManagementController extends MY_Controller
     }
     public function saveCompany()
     {
-
         if (!postAllowed()) {
             redirect('add_company');
         }

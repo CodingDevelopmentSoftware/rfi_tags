@@ -126,6 +126,7 @@ class ScanManagementController extends MY_Controller
                         'qr_read_status' =>  YES_READ_STATUS,
                         'qr_read_by' => $this->getLoggedInUser()->user_id,
                         'qr_read_dt' => getCurrentTime(),
+                        'status' => ACTIVE_STATUS
                     ]
                 );
                 if ($responseStatus == 1) {
@@ -136,7 +137,8 @@ class ScanManagementController extends MY_Controller
                         'temp_excel',
                         [
                             'qr_read_by' => $this->getLoggedInUser()->user_id,
-                            'qr_read_status' => YES_READ_STATUS
+                            'qr_read_status' => YES_READ_STATUS,
+                            'status' => ACTIVE_STATUS
                         ]
                     );
                 } else {

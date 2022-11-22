@@ -106,7 +106,7 @@
                                 <span class="sidebar-item-title">Dashboard</span>
                             </a>
                         </li>
-                        <?php if ($user_type == 's'): ?>
+                        <?php if ($user_type == 's') : ?>
                             <li>
                                 <a href="#">
                                     <span class="sidebar-item-icon fa-stack ">
@@ -127,98 +127,118 @@
                                     </li>
                                 </ul>
                             </li>
-                        <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title" title="Company Mangement">Company Mangement</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url('add_company'); ?>" title="Add Company">Add Company</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                <a href="<?= base_url('view_companies'); ?>" title="View Companies">View Companies</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title" title="Project Management">Project Management</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url('add_project'); ?>" title="Add Project">Add Project</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                <a href="<?= base_url('view_projects'); ?>" title="View Projects">View Projects</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title" title="Excel Management">Excel Mangement</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a download href="<?= EXCEL_PATH ?>" title="Download Sample">Download Sample</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url('upload_excel'); ?>" title="Upload Excel">Upload Excel</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                <a href="<?= base_url('current_excel'); ?>" title="Current Excel">Current Excel</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                <a href="<?= base_url('set_limit'); ?>" title="Set Limit">Set Limit</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <?php elseif(isset($check_excle) && $check_excle > 0): ?>
                             <li>
-                            <a href="#">
-                                <span class="sidebar-item-icon fa-stack ">
-                                    <i class="fa fa-square fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                                <span class="sidebar-item-arrow fa arrow"></span>
-                                <span class="sidebar-item-title" title="Scan Tags">Scan Tags</span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?= base_url('read_rfid_tags'); ?>" title="Read Tags">Read Tags</a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                <a href="<?= base_url('scan_qr_tags'); ?>" title="Scan QR Tags">Scan QR Tags</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <?php endif;?>
+                                <a href="#">
+                                    <span class="sidebar-item-icon fa-stack ">
+                                        <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                        <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="sidebar-item-arrow fa arrow"></span>
+                                    <span class="sidebar-item-title" title="Company Mangement">Company Mangement</span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('add_company'); ?>" title="Add Company">Add Company</a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('view_companies'); ?>" title="View Companies">View Companies</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-item-icon fa-stack ">
+                                        <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                        <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="sidebar-item-arrow fa arrow"></span>
+                                    <span class="sidebar-item-title" title="Project Management">Project Management</span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('add_project'); ?>" title="Add Project">Add Project</a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('view_projects'); ?>" title="View Projects">View Projects</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-item-icon fa-stack ">
+                                        <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                        <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="sidebar-item-arrow fa arrow"></span>
+                                    <span class="sidebar-item-title" title="Excel Management">Excel Mangement</span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a download href="<?= EXCEL_PATH ?>" title="Download Sample">Download Sample</a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('upload_excel'); ?>" title="Upload Excel">Upload Excel</a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('current_excel'); ?>" title="Current Excel">Current Excel</a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('set_limit'); ?>" title="Set Limit">Set Limit</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-item-icon fa-stack ">
+                                        <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                        <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="sidebar-item-arrow fa arrow"></span>
+                                    <span class="sidebar-item-title" title="Reports">Reports</span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('scanned_tags'); ?>" title="Scanned Tags">Scanned Tags</a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('unscanned_tags'); ?>" title="Unscanned Tags">Unscanned Tags</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php elseif (isset($check_excle) && $check_excle > 0) : ?>
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-item-icon fa-stack ">
+                                        <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                        <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="sidebar-item-arrow fa arrow"></span>
+                                    <span class="sidebar-item-title" title="Scan Tags">Scan Tags</span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('read_rfid_tags'); ?>" title="Read Tags">Read Tags</a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?= base_url('scan_qr_tags'); ?>" title="Scan QR Tags">Scan QR Tags</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

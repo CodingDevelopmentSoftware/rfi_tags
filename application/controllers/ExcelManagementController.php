@@ -75,7 +75,7 @@ class ExcelManagementController extends MY_Controller
                     'generated_qr' => substr($rfid_or_id, -12),
                     'rfid_read_status' => NOT_READ_STATUS,
                     'qr_read_status' => NOT_READ_STATUS,
-                    'status' => ACTIVE_STATUS, 
+                    'status' => INACTIVE_STATUS, 
                     'created_by' => $this->getLoggedInUser()->user_id,
                     'created_dt' => getCurrentTime()
                 ];

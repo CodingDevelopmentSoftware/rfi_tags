@@ -110,6 +110,10 @@ $route['remove_all']['get'] = 'ExcelManagementController/removeAll';
 $route['set_limit']['get'] = 'ExcelManagementController/setLimit';
 $route['save_limit']['post'] = 'ExcelManagementController/saveLimit';
 
+// Reports
+$route['scanned_tags']['get'] = 'ReportsController/scannedTags';
+$route['unscanned_tags']['get'] = 'ReportsController/unscannedTags';
+
 // Scan Management
 $route['read_rfid_tags']['get'] = 'ScanManagementController/readRfidTags';
 $route['save_rfid_reader_tag']['post'] = 'ScanManagementController/saveRfidReaderTag';
