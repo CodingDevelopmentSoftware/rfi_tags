@@ -1,7 +1,32 @@
-var today=new Date,dd=today.getDate(),mm=today.getMonth()+1,yyyy=today.getFullYear();dd<10&&(dd="0"+dd),mm<10&&(mm="0"+mm),$(document).ready(function(){$("#user_managment").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : All User Managment\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : All User Managment\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}}]})}),$(document).ready(function(){$("#all_area").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : All Areas\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : All Areas\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3]}}]})}),$(document).ready(function(){$("#all_locations").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : All Locations\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : All Locations\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5]}}]})}),
-$(document).ready(function(){$("#all_vehicle").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : All Vehicles\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : All Vehicles\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}}]})}),
-$(document).ready(function(){$("#search_vehicle").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : All Vehicles\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : All Vehicles\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}}]})}),
-$(document).ready(function(){$("#all_device").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : All Devices\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : All Devices\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}}]})}),$(document).ready(function(){$("#connecting_device").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : All Connecting Devices\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : All Connecting Devices\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5]}}]})}),$(document).ready(function(){$("#area_wise").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : Area Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : Area Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}}]})}),$(document).ready(function(){$("#device_wise").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : Device Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : Device Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}}]})}),$(document).ready(function(){$("#location_wise").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : Location Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : Location Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}}]})}),$(document).ready(function(){$("#vehicle_wise").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : Vehicle Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : Vehicle Wise\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}}]})}),
-$(document).ready(function(){$("#plant_in").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : Plant In\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : Plant In\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}}]})}),
-$(document).ready(function(){$("#total_count").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : Plant In\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : Summary Report\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4]}}]})}),
-$(document).ready(function(){$("#plant_out").DataTable({dom:"Bfrtip",buttons:[{extend:"excelHtml5",title:"SHREE CEMENT",messageTop:"Report Name : Plant Out\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}},{extend:"pdfHtml5",pageSize:"LEGAL",title:"SHREE CEMENT",messageTop:"Report Name : Plant Out\n Date: "+today,exportOptions:{rows:{selected:!0},columns:[0,1,2,3,4,5,6]}}]})});
+var today = new Date,
+    dd = today.getDate(),
+    mm = today.getMonth() + 1,
+    yyyy = today.getFullYear();
+dd < 10 && (dd = "0" + dd), mm < 10 && (mm = "0" + mm),
+     $(document).ready(function() {
+        $("#user_managment").DataTable({
+            dom: "Bfrtip",
+            buttons: [{
+                extend: "excelHtml5",
+                title: "Tag Management System",
+                messageTop: "Report Name : ScannedTags \n Date: " + today,
+                exportOptions: {
+                    rows: {
+                        selected: !0
+                    },
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            }, {
+                extend: "pdfHtml5",
+                pageSize: "LEGAL",
+                title: "Tag Management System",
+                messageTop: "Report Name : ScannedTags \n Date: " + today,
+                exportOptions: {
+                    rows: {
+                        selected: !0
+                    },
+                    columns: [0, 1, 2, 3, 4, 5]
+                }
+            }]
+        })
+    });
