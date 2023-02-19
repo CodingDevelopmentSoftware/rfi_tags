@@ -9,7 +9,7 @@ class ProjectManagmentController extends MY_Controller
     }
     public function index()
     {
-        $this->data['title'] = 'Add Project';
+        $this->data['title'] = 'Add Job';
         $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/projectmanagement/add_project');
@@ -48,21 +48,21 @@ class ProjectManagmentController extends MY_Controller
 
             if ($response > 0) {
                 $color = 'success';
-                $message = "$project_name Project created Successfully";
+                $message = "$project_name job created Successfully";
             } else {
                 $color = 'danger';
                 $message = "Database Problem";
             }
         } else {
             $color = 'warning';
-            $message = "$project_name Project already Created";
+            $message = "$project_name job already Created";
         }
         $this->redirectWithMessage($color, $message, 'add_project');
     }
 
     public function viewProjects()
     {
-        $this->data['title'] = 'View Projects';
+        $this->data['title'] = 'View Job';
         $this->data['page_data'] = $this->ProjectManagmentModel->getAllProjects();
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/projectmanagement/view_projects');
@@ -76,11 +76,11 @@ class ProjectManagmentController extends MY_Controller
 
         if ($response != 1) {
             $color = 'danger';
-            $message = "Project does not exist";
+            $message = "Job does not exist";
             $this->redirectWithMessage($color, $message, 'view_projects');
         }
 
-        $this->data['title'] = 'View Project';
+        $this->data['title'] = 'View Job';
         $this->data['page_data'] = $this->ProjectManagmentModel->getProjectWithWhere($id);
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/projectmanagement/view_project_profile');
@@ -95,7 +95,7 @@ class ProjectManagmentController extends MY_Controller
 
         if ($response != 1) {
             $color = 'danger';
-            $message = "Project does not exist";
+            $message = "Job does not exist";
         } else {
             $response = $this->ProjectManagmentModel->updateData(
                 'project_management',
@@ -104,7 +104,7 @@ class ProjectManagmentController extends MY_Controller
             );
             if ($response == 1) {
                 $color = 'success';
-                $message = "Project Status Changed Successfully";
+                $message = "Job Status Changed Successfully";
             } else {
                 $color = 'danger';
                 $message = "Database Problem";
@@ -120,7 +120,7 @@ class ProjectManagmentController extends MY_Controller
 
         if ($response != 1) {
             $color = 'danger';
-            $message = "Project does not exist";
+            $message = "Job does not exist";
             $this->redirectWithMessage($color, $message, 'view_companies');
         }
 
@@ -155,7 +155,7 @@ class ProjectManagmentController extends MY_Controller
 
         if ($response > 0) {
             $color = 'success';
-            $message = "Project updated Successfully";
+            $message = "Job updated Successfully";
         } else {
             $color = 'danger';
             $message = "Database Problem";
@@ -168,7 +168,7 @@ class ProjectManagmentController extends MY_Controller
         if (!postAllowed()) {
             return false;
         }
-        
+
         $companyId = $this->input->post('company_id');
         $data = $this->ProjectManagmentModel->getDataByWhereByOrderBy(
             'pid,project_name',
@@ -178,11 +178,10 @@ class ProjectManagmentController extends MY_Controller
             'ASC'
         );
         header('Content-Type: application/json');
-        if(!empty($data)){
-            echo json_encode($data); 
+        if (!empty($data)) {
+            echo json_encode($data);
         } else {
             echo json_encode([]);
         }
-        
     }
 }

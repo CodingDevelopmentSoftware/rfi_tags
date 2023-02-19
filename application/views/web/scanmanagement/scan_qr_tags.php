@@ -42,7 +42,7 @@
     let tagRead = document.querySelector('#read-tag-input');
     tagRead.addEventListener('change',function(e){
         e.preventDefault();
-        if(e.target.value.length > 8) {
+        if(e.target.value.length > 3) {
             $.ajax({
                 url : '<?= base_url('/save_qr_reader_tag')?>',
                 method : 'POST',

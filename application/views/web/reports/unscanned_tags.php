@@ -16,7 +16,7 @@
                 <div class="panel-body">
                     <?php $this->load->view('web/includes/message'); ?>
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="user_managment">
+                        <table class="table table-striped table-bordered table-hover" id="unscanned_tags">
                             <thead>
                                 <tr>
                                     <th>Serial No.</th>
@@ -25,21 +25,21 @@
                                     <th>Type of Tag</th>
                                     <th>QR and Bar Code Number</th>
                                     <th>RFID OR ID</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $c = 0;
-                                foreach ($page_data as $user): ?>
-                                        <tr>
-                                            <td><?= ++$c; ?></td>
-                                            <td><?= ucwords($user->company_name); ?></td>
-                                            <td><?= ucwords($user->project_name); ?></td>
-                                            <td><?= ucwords($user->type_of_tag); ?></td>
-                                            <td><?= $user->qr_and_bar_code_number; ?></td>
-                                            <td><?= $user->rfid_or_id; ?></td>
-                                        </tr>
-                                <?php endforeach;?>
+                                foreach ($page_data as $user) : ?>
+                                    <tr>
+                                        <td><?= ++$c; ?></td>
+                                        <td><?= ucwords($user->company_name); ?></td>
+                                        <td><?= ucwords($user->project_name); ?></td>
+                                        <td><?= ucwords($user->type_of_tag); ?></td>
+                                        <td><?= $user->qr_and_bar_code_number; ?></td>
+                                        <td><?= $user->rfid_or_id; ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

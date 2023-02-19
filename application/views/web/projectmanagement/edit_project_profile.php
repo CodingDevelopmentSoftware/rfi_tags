@@ -3,8 +3,8 @@
         <div class="col-lg-12">
             <ol class="breadcrumb text-sm text-right">
                 <li><a href="<?= base_url('view_projects') ?>">Home</a></li>
-                <li><a href="<?= base_url('view_projects') ?>">View Projects</a></li>
-                <li>View Project</li>
+                <li><a href="<?= base_url('view_projects') ?>">View Jobs</a></li>
+                <li>View Job</li>
             </ol>
         </div>
         <div class="col-lg-2"></div>
@@ -31,8 +31,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Project Name</label>
-                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Project Name" required maxlength="150" value="<?= ucwords($page_data_database->project_name); ?>">
+                                    <label>Job Name</label>
+                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Job Name" required maxlength="150" value="<?= ucwords($page_data_database->project_name); ?>">
                                 </div>
                                 <button type="submit" class="btn btn-success" name="add">Update</button>
                             </form>

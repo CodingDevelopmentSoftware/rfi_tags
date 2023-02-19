@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <ol class="breadcrumb text-sm text-right">
                 <li><a href="<?= base_url('dashboard') ?>">Home</a></li>
-                <li>Add Project</li>
+                <li>Add Job</li>
             </ol>
         </div>
         <div class="col-lg-2"></div>
@@ -29,8 +29,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Project Name</label>
-                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Project Name" required maxlength="150">
+                                    <label>Job Name</label>
+                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Job Name" required maxlength="150">
                                 </div>
                                 <button type="submit" class="btn btn-success" name="add">Add</button>
                                 <button type="reset" class="btn btn-info">Clear</button>

@@ -22,7 +22,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <td>Project Name</td>
+                                <td>Job Name</td>
                                 <td><b><?= ucwords($page_data->project_name); ?></b></td>
                             </tr>
                             <tr>

@@ -154,16 +154,16 @@
                                         <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                     </span>
                                     <span class="sidebar-item-arrow fa arrow"></span>
-                                    <span class="sidebar-item-title" title="Project Management">Project Management</span>
+                                    <span class="sidebar-item-title" title="Job Management">Job Management</span>
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?= base_url('add_project'); ?>" title="Add Project">Add Project</a>
+                                        <a href="<?= base_url('add_project'); ?>" title="Add Job">Add Job</a>
                                     </li>
                                 </ul>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?= base_url('view_projects'); ?>" title="View Projects">View Projects</a>
+                                        <a href="<?= base_url('view_projects'); ?>" title="View Job">View Job</a>
                                     </li>
                                 </ul>
                             </li>
