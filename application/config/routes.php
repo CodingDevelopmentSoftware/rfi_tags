@@ -106,14 +106,16 @@ $route['upload_excel']['get'] = 'ExcelManagementController/index';
 $route['save_upload_excel']['post'] = 'ExcelManagementController/saveUploadExcel';
 $route['current_excel']['get'] = 'ExcelManagementController/currentExcel';
 $route['current_excel']['post'] = 'ExcelManagementController/currentExcel';
-$route['remove_duplicate']['get'] = 'ExcelManagementController/removeDuplicate';
-$route['remove_all']['get'] = 'ExcelManagementController/removeAll';
+$route['remove_duplicate/(:any)']['get'] = 'ExcelManagementController/removeDuplicate/$1';
+$route['remove_all/(:any)']['get'] = 'ExcelManagementController/removeAll/$1';
 $route['set_limit']['get'] = 'ExcelManagementController/setLimit';
 $route['save_limit']['post'] = 'ExcelManagementController/saveLimit';
 
 // Reports
 $route['scanned_tags']['get'] = 'ReportsController/scannedTags';
+$route['scanned_tags']['post'] = 'ReportsController/scannedTags';
 $route['unscanned_tags']['get'] = 'ReportsController/unscannedTags';
+$route['unscanned_tags']['post'] = 'ReportsController/unscannedTags';
 
 // Scan Management
 $route['read_rfid_tags']['get'] = 'ScanManagementController/readRfidTags';

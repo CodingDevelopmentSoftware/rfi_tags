@@ -14,6 +14,22 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
+                    <div class="row">
+                        <form action="<?= base_url('unscanned_tags') ?>" method="post" class="col-md-4">
+                            <div class="form-group">
+                                <label for="select-job">Select Job</label>
+                                <select id="select-job" class="form-control" name="job_id">
+                                    <option value="">Select Job</option>
+                                    <?php foreach ($job_data as $value) : ?>
+                                        <option value="<?= $value->pid ?>"><?= ucwords($value->project_name) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-sm" type="submit">Select</button>
+                            </div>
+                        </form>
+                    </div>
                     <?php $this->load->view('web/includes/message'); ?>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover" id="unscanned_tags">
@@ -21,7 +37,7 @@
                                 <tr>
                                     <th>Serial No.</th>
                                     <th>Company Name</th>
-                                    <th>Project Name</th>
+                                    <th>Job Number</th>
                                     <th>Type of Tag</th>
                                     <th>QR and Bar Code Number</th>
                                     <th>RFID OR ID</th>

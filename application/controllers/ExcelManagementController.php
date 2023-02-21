@@ -123,47 +123,64 @@ class ExcelManagementController extends MY_Controller
             $jobId =  (int)$this->input->post('job_id');
             $this->data['show_report'] = true;
             $this->data['project_data'] = $this->ExcelManagementModel->getCurrentCompnayProjectName($jobId);
-            $this->data['total_count'] = $this->ExcelManagementModel->getDataWithWhereIn(
+            $this->data['total_count'] = $this->ExcelManagementModel->getSingleRowWithWhere(
                 'COUNT(tid) as total_count',
                 'temp_excel',
-                [1, 0]
+                ['project_id' => $jobId]
             );
-            $this->data['original_count'] = $this->ExcelManagementModel->getCount('temp_excel', ['data_exist' => 0]);
-            $this->data['duplicate_count'] = $this->ExcelManagementModel->getCount('temp_excel', ['data_exist' => 1]);
-            $this->data['page_data'] = $this->ExcelManagementModel->getByTableName('temp_excel');
+            $this->data['original_count'] = $this->ExcelManagementModel->getCount('temp_excel', ['project_id' => $jobId, 'data_exist' => 0]);
+            $this->data['duplicate_count'] = $this->ExcelManagementModel->getCount('temp_excel', ['project_id' => $jobId, 'data_exist' => 1]);
+            $this->data['page_data'] = $this->ExcelManagementModel->getDataByWhereByOrderBy(
+                '*',
+                'temp_excel',
+                ['project_id' => $jobId],
+                'created_dt',
+                'DESC'
+            );
         }
+
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/excelmanagement/current_excel');
         $this->load->view('web/includes/footer');
     }
-    public function removeDuplicate()
+    public function removeDuplicate(string $jobId = '')
     {
-        $response = $this->ExcelManagementModel->deleteData('temp_excel', ['data_exist' => 1]);
+        if ($jobId !== '') {
+            $jobId = (int) base64_decode($jobId);
+            $response = $this->ExcelManagementModel->deleteData('temp_excel', ['project_id' => $jobId, 'data_exist' => 1]);
 
-        if ($response == 1) {
-            $color = 'success';
-            $message = 'Duplicate Data Deleted Successfully';
-            $redirect = 'current_excel';
+            if ($response == 1) {
+                $color = 'success';
+                $message = 'Duplicate Data Deleted Successfully';
+                $redirect = 'current_excel';
+            } else {
+                $color = 'danger';
+                $message = 'Database Problem';
+                $redirect = 'currentExcel';
+            }
+            $this->redirectWithMessage($color, $message, $redirect);
         } else {
-            $color = 'danger';
-            $message = 'Database Problem';
-            $redirect = 'currentExcel';
+            $this->currentExcel();
         }
-        $this->redirectWithMessage($color, $message, $redirect);
     }
-    public function removeAll()
+    public function removeAll(string $jobId = '')
     {
-        $response = $this->ExcelManagementModel->truncateTable('temp_excel');
-        if ($response == 1) {
-            $color = 'success';
-            $message = 'All Data Deleted Successfully';
-            $redirect = 'current_excel';
+        if ($jobId !== '') {
+            $jobId = (int) base64_decode($jobId);
+            $response = $this->ExcelManagementModel->deleteData('temp_excel', ['project_id' => $jobId]);
+            if ($response == 1) {
+                $color = 'success';
+                $message = 'Data Deleted Successfully';
+                $redirect = 'current_excel';
+            } else {
+                $color = 'danger';
+                $message = 'Database Problem';
+                $redirect = 'current_excel';
+            }
+            $this->redirectWithMessage($color, $message, $redirect);
         } else {
-            $color = 'danger';
-            $message = 'Database Problem';
-            $redirect = 'currentExcel';
+            $this->currentExcel();
         }
-        $this->redirectWithMessage($color, $message, $redirect);
     }
 
     public function setLimit()

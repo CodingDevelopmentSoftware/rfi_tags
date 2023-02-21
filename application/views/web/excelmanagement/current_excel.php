@@ -53,10 +53,10 @@
                                 </tr>
                                 <tr>
                                     <td>Total Count</td>
-                                    <td><?= $total_count[0]->total_count ?></td>
+                                    <td><?= $total_count->total_count ?></td>
                                     <td>
-                                        <?php if ($total_count[0]->total_count) : ?>
-                                            <a href="<?= base_url("remove_all/") . $project_data->pid; ?>" onclick="return confirm('Are you sure you want to delete all data ?')" class="btn btn-danger btn-xs" title="View Profile">Remove All</a>
+                                        <?php if ($total_count->total_count) : ?>
+                                            <a href="<?= base_url("remove_all/") . base64_encode($project_data->pid); ?>" onclick="return confirm('Are you sure you want to delete all data ?')" class="btn btn-danger btn-xs" title="View Profile">Remove All</a>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
@@ -70,7 +70,7 @@
                                     <td><?= $duplicate_count ?></td>
                                     <td>
                                         <?php if ($duplicate_count) : ?>
-                                            <a href="<?= base_url("remove_duplicate"); ?>" onclick="return confirm('Are you sure you want to delete duplicate data ?')" class="btn btn-danger btn-xs" title="View Profile">Remove Duplicate</a>
+                                            <a href="<?= base_url("remove_duplicate/") . base64_encode($project_data->pid); ?>" onclick="return confirm('Are you sure you want to delete duplicate data ?')" class="btn btn-danger btn-xs" title="View Profile">Remove Duplicate</a>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
