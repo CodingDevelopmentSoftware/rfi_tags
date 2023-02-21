@@ -29,8 +29,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Job Name</label>
-                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Job Name" required maxlength="150">
+                                    <label>Job Number</label>
+                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Job Number" required maxlength="150">
                                 </div>
                                 <button type="submit" class="btn btn-success" name="add">Add</button>
                                 <button type="reset" class="btn btn-info">Clear</button>

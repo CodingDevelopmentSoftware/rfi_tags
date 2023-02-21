@@ -20,7 +20,7 @@
                             <thead>
                                 <tr>
                                     <th>Serial No.</th>
-                                    <th>Job Name</th>
+                                    <th>Job Number</th>
                                     <th>Company Name</th>
                                     <th>Status</th>
                                     <th>Action</th>

@@ -188,7 +188,7 @@
                                 </ul>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?= base_url('current_excel'); ?>" title="Current Excel">Current Excel</a>
+                                        <a href="<?= base_url('current_excel'); ?>" title="Job Status">Job Status</a>
                                     </li>
                                 </ul>
                                 <ul class="nav nav-second-level">

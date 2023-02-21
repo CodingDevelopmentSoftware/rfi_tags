@@ -8,7 +8,7 @@ class ReportsController extends MY_Controller
         $this->checkUserSessionExist();
     }
 
-    public function scannedTags() 
+    public function scannedTags()
     {
         $this->data['title'] = 'Scanned Reports';
         $this->data['page_data'] = $this->ReportsModel->getScannedtags();
@@ -16,13 +16,12 @@ class ReportsController extends MY_Controller
         $this->load->view('web/reports/scanned_tags');
         $this->load->view('web/includes/footer');
     }
-    public function unscannedTags() 
+    public function unscannedTags()
     {
-        $this->data['title'] = 'Scanned Reports';
+        $this->data['title'] = 'Unscanned Reports';
         $this->data['page_data'] = $this->ReportsModel->getUnScannedtags();
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/reports/unscanned_tags');
         $this->load->view('web/includes/footer');
     }
 }
-?>

@@ -31,8 +31,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Job Name</label>
-                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Job Name" required maxlength="150" value="<?= ucwords($page_data_database->project_name); ?>">
+                                    <label>Job Number</label>
+                                    <input type="text" name="project_name" class="form-control" placeholder="Enter Job Numberupload_excel" required maxlength="150" value="<?= ucwords($page_data_database->project_name); ?>">
                                 </div>
                                 <button type="submit" class="btn btn-success" name="add">Update</button>
                             </form>

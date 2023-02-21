@@ -8,16 +8,17 @@ class ProjectManagmentModel extends MY_Model
         parent::__construct();
     }
 
-    public function getAllProjects(): array 
+    public function getAllProjects(): array
     {
         return $this->db
-        ->select('p.*,cm.company_name')
-        ->from('project_management as p')
-        ->join('company_management as cm ', 'cm.cid = p.company_id')
-        ->get()
-        ->result();
+            ->select('p.*,cm.company_name')
+            ->from('project_management as p')
+            ->join('company_management as cm ', 'cm.cid = p.company_id')
+            // ->where('')
+            ->get()
+            ->result();
     }
-    
+
     public function getProjectWithWhere(int $id = 0): ?object
     {
         return $this->db
@@ -30,5 +31,4 @@ class ProjectManagmentModel extends MY_Model
             ->get()
             ->row();
     }
-    
 }

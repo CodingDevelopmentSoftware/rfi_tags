@@ -23,15 +23,15 @@
                                     <label>Company Name</label>
                                     <select class="form-control" name="company_id" id="company_id" required>
                                         <option value="">Select Company </option>
-                                        <?php foreach($page_data as $data):?>
-                                            <option value="<?= $data->cid?>"><?= ucwords($data->company_name); ?></option>
-                                        <?php endforeach;?>    
+                                        <?php foreach ($page_data as $data) : ?>
+                                            <option value="<?= $data->cid ?>"><?= ucwords($data->company_name); ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Project Name</label>
+                                    <label>Job Number</label>
                                     <select class="form-control" name="project_id" required id="project_id">
-                                        <option value="">Select Project </option>
+                                        <option value="">Select Job Number </option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -59,20 +59,23 @@
 $this->load->view('web/includes/footer');
 ?>
 <script>
-$('#company_id').change(function(e){
-    let company_id = e.target.value;
-    let elmentId = '#project_id';
-    $.ajax({
-        url:'<?= base_url('get_projects'); ?>',
-        data : {company_id : company_id},
-        method : 'POST',
-        success : function(response){
-            $(elmentId).html('');
-            $(elmentId).append(`<option value=''> Select Project</option>`)
-            response.map(element => {
-                $(elmentId).append(`<option value='${element.pid}' >${element.project_name}</option>`)
-            })
-        }
-    })  
-})
+    $('#company_id').change(function(e) {
+        let company_id = e.target.value;
+        let elmentId = '#project_id';
+        $.ajax({
+            url: '<?= base_url('get_projects'); ?>',
+            data: {
+                company_id: company_id
+            },
+            method: 'POST',
+            success: function(response) {
+                $(elmentId).html('');
+                $(elmentId).append(`<option value=''> Select Project</option>`)
+                response.map(element => {
+                    let projectName = element.project_name[0].toUpperCase() + element.project_name.slice(1);
+                    $(elmentId).append(`<option value='${element.pid}' >${projectName}</option>`)
+                })
+            }
+        })
+    })
 </script>

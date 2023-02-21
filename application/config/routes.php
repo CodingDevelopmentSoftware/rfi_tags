@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -105,6 +105,7 @@ $route['get_projects']['post'] = 'ProjectManagmentController/getProjects';
 $route['upload_excel']['get'] = 'ExcelManagementController/index';
 $route['save_upload_excel']['post'] = 'ExcelManagementController/saveUploadExcel';
 $route['current_excel']['get'] = 'ExcelManagementController/currentExcel';
+$route['current_excel']['post'] = 'ExcelManagementController/currentExcel';
 $route['remove_duplicate']['get'] = 'ExcelManagementController/removeDuplicate';
 $route['remove_all']['get'] = 'ExcelManagementController/removeAll';
 $route['set_limit']['get'] = 'ExcelManagementController/setLimit';

@@ -7,7 +7,7 @@ class CompanyManagementModel extends MY_Model
     {
         parent::__construct();
     }
-    
+
     public function getUserProfileWithWhere(int $id = 0): ?object
     {
         return $this->db
@@ -19,5 +19,4 @@ class CompanyManagementModel extends MY_Model
             ->get()
             ->row();
     }
-    
 }

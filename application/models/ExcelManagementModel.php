@@ -8,16 +8,14 @@ class ExcelManagementModel extends MY_Model
         parent::__construct();
     }
 
-    public function getCurrentCompnayProjectName()
+    public function getCurrentCompnayProjectName(int $jobId = 0): ?object
     {
         return $this->db
-            ->select('cid, pid, cm.company_name, pm.project_name')
-            ->from('temp_excel as te')
-            ->join('company_management as cm', 'cm.cid = te.company_id')
-            ->join('project_management as pm', 'pm.pid = te.project_id')
-            ->limit(1, 0)
+            ->select('cid, pid, cm.company_name, p.project_name')
+            ->from('project_management as p')
+            ->join('company_management as cm', 'cm.cid = p.company_id')
+            ->where(['p.pid' => $jobId])
             ->get()
             ->row();
     }
-    
 }

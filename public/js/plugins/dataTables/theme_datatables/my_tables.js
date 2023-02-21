@@ -44,6 +44,6 @@ $(document).ready(function () {
     createExport('#scanned_tags', 'Asset Management', 'Scanned Tags', 0, [0, 1, 2, 3, 4, 5]);
 
     // audit Management
-    createExport('#unscanned_tags', 'Asset Management', 'Unscanned_tags', 0, [0, 1, 2, 3, 4, 5]);
+    createExport('#unscanned_tags', 'Asset Management', 'Unscanned Tags', 0, [0, 1, 2, 3, 4, 5]);
 
 });

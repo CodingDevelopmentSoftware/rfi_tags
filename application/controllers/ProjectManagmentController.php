@@ -10,7 +10,7 @@ class ProjectManagmentController extends MY_Controller
     public function index()
     {
         $this->data['title'] = 'Add Job';
-        $this->data['page_data'] = $this->CompanyManagementModel->getByTableName('company_management');
+        $this->data['page_data'] = $this->CompanyManagementModel->getDataByWhereByOrderBy('*', 'company_management', ['status' => ACTIVE_STATUS], 'company_name', 'ASC');
         $this->load->view('web/includes/header', $this->data);
         $this->load->view('web/projectmanagement/add_project');
         $this->load->view('web/includes/footer');
@@ -173,7 +173,7 @@ class ProjectManagmentController extends MY_Controller
         $data = $this->ProjectManagmentModel->getDataByWhereByOrderBy(
             'pid,project_name',
             'project_management',
-            ['company_id' => $companyId],
+            ['company_id' => $companyId, 'status' => ACTIVE_STATUS],
             'project_name',
             'ASC'
         );
