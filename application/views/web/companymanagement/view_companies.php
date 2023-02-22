@@ -19,26 +19,21 @@
                         <table class="table table-striped table-bordered table-hover" id="company_management">
                             <thead>
                                 <tr>
-                                    <th>Serial No.</th>
-                                    <th>Company Name</th>
+                                    <th>Sri no.</th>
+                                    <th>Job Number</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Count</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $c = 0;
-                                foreach ($page_data as $user) : ?>
+                                <?php
+                                $c = 0;
+                                foreach ($page_data['table'] as $key => $value) : ?>
                                     <tr>
                                         <td><?= ++$c; ?></td>
-                                        <td><?= ucwords($user->company_name); ?></td>
-                                        <td><?= $user->status == 1 ? 'Active' : 'Inactive'; ?></td>
-                                        <td>
-                                            <a href="<?= base_url("view_company_profile/") . base64_encode($user->cid); ?>" onclick="return confirm('Are you sure you want to View the profile of <?= ucwords($user->company_name); ?> ?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
-
-                                            <a href="<?= base_url("edit_company_profile/") . base64_encode($user->cid); ?>" onclick="return confirm('Are you sure you want to Edit the profile of <?= ucwords($user->company_name); ?> ?')" class="btn btn-success btn-xs" title="Edit Profile">Edit</a>
-
-                                            <a href="<?= base_url("change_status_company/") . base64_encode($user->cid) . '/' . base64_encode($user->status); ?>" onclick="return confirm('Are you sure you want to change the Status of <?= ucwords($user->company_name); ?> ?')" class="btn btn-<?= $user->status == 1 ? 'danger' : 'warning'; ?> btn-xs" title="Change Status"><?= $user->status == 0 ? 'Active' : 'Inactive'; ?></a>
-                                        </td>
+                                        <td><?= ucwords($value->project_name); ?></td>
+                                        <td><?= $value->status ? 'Scanned' : 'Unscanned'; ?></td>
+                                        <td><?= $value->count; ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

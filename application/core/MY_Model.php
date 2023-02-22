@@ -133,4 +133,9 @@ class MY_Model extends CI_Model
             return 0;
         }
     }
+
+    public function rawQuery(string $query = ''): ?array
+    {
+        return $this->db->query($query)->result();
+    }
 }
