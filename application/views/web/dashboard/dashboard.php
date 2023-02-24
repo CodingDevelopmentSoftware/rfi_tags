@@ -19,7 +19,7 @@
                         <div class="panel-body padding-none">
                             <!-- <a href="#"> -->
                             <div class="row">
-                                Total Jobs
+                                Total Running Jobs
                                 <div class="col-xs-3">
                                     <i class="fa fa-tags fa-5x panel-status-icon" aria-hidden="true"></i>
                                 </div>
@@ -38,7 +38,7 @@
                         <div class="panel-body padding-none">
                             <!-- <a href="#"> -->
                             <div class="row">
-                                Total Active Jobs
+                                Total Tags Scanned
                                 <div class="col-xs-3">
                                     <i class="fa fa-tags fa-5x panel-status-icon" aria-hidden="true"></i>
                                 </div>
@@ -57,7 +57,7 @@
                         <div class="panel-body padding-none">
                             <!-- <a href="#"> -->
                             <div class="row">
-                                Total Inactive Jobs
+                                Total Tags Unscanned
                                 <div class="col-xs-3">
                                     <i class="fa fa-tags fa-5x panel-status-icon" aria-hidden="true"></i>
                                 </div>
