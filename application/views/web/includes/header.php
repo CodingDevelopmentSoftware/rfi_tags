@@ -174,7 +174,7 @@
                                         <i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i>
                                     </span>
                                     <span class="sidebar-item-arrow fa arrow"></span>
-                                    <span class="sidebar-item-title" title="Excel Management">Excel Mangement</span>
+                                    <span class="sidebar-item-title" title="Excel Management">Excel Management</span>
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -191,11 +191,11 @@
                                         <a href="<?= base_url('current_excel'); ?>" title="Job Status">Job Status</a>
                                     </li>
                                 </ul>
-                                <ul class="nav nav-second-level">
+                                <!-- <ul class="nav nav-second-level">
                                     <li>
                                         <a href="<?= base_url('set_limit'); ?>" title="Set Limit">Set Limit</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <li>
                                 <a href="#">

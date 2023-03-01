@@ -29,7 +29,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-success btn-sm" type="submit">Select</button>
+                                <button class="btn btn-success btn-sm" type="submit">Find</button>
                             </div>
                         </form>
                     </div>
