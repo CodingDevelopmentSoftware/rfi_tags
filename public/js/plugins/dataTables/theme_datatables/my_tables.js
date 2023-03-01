@@ -29,24 +29,24 @@ $(document).ready(function () {
     }
 
     // User Management
-    createExport('#user_managment', 'Asset Management', 'All Users', 0, [0, 1, 2, 3, 4, 5, 6]);
+    createExport('#user_managment', 'Tag Management System', 'All Users', 0, [0, 1, 2, 3, 4, 5, 6]);
 
     // Company Management
-    createExport('#company_management', 'Asset Management', 'All Companies', 0, [0, 1, 2]);
+    createExport('#company_management', 'Tag Management System', 'All Companies', 0, [0, 1, 2]);
 
     // Project Management
-    createExport('#projetc_management', 'Asset Management', 'Job Management', 0, [0, 1, 2, 3]);
+    createExport('#projetc_management', 'Tag Management System', 'Job Management', 0, [0, 1, 2, 3]);
 
     // Current Management
-    createExport('#current_excel', 'Asset Management', 'Current Excel', 0, [0, 1, 2, 3, 4, 5]);
+    createExport('#current_excel', 'Tag Management System', 'Current Excel', 0, [0, 1, 2, 3, 4, 5]);
 
     // audit Management
-    createExport('#scanned_tags', 'Asset Management', 'Scanned Tags', 0, [0, 1, 2, 3, 4, 5]);
+    createExport('#scanned_tags', 'Tag Management System', 'Scanned Tags', 0, [0, 1, 2, 3, 4, 5]);
 
     // audit Management
-    createExport('#unscanned_tags', 'Asset Management', 'Unscanned Tags', 0, [0, 1, 2, 3, 4, 5]);
+    createExport('#unscanned_tags', 'Tag Management System', 'Unscanned Tags', 0, [0, 1, 2, 3, 4, 5]);
 
     // audit Management
-    createExport('#summary_report', 'Asset Management', 'Summary Report', 0, [0, 1, 2, 3]);
+    createExport('#summary_report', 'Tag Management System', 'Summary Report', 0, [0, 1, 2, 3]);
 
 });
